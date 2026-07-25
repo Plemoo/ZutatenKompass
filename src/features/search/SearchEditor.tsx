@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
 import { useI18n } from "../../i18n";
 import { useSearchState } from "../../state";
@@ -41,6 +42,16 @@ export function SearchEditor() {
         suggest={suggestIngredientCandidates}
         value={localizedExclude}
       />
+      <View accessibilityRole="summary" style={styles.safety}>
+        <MaterialCommunityIcons
+          color={colors.tomato}
+          name="alert-circle-outline"
+          size={20}
+        />
+        <Typography kind="caption" style={styles.safetyText}>
+          {t.search.excludeSafety}
+        </Typography>
+      </View>
       <FacetFilters
         groups={facetGroups(locale)}
         onReset={() => search.facets.forEach(search.toggleFacet)}
@@ -66,4 +77,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.leafSoft,
   },
   offlineText: { color: colors.leafDark, fontWeight: "600" },
+  safety: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: spacing.sm,
+    padding: spacing.md,
+    borderRadius: radius.md,
+    backgroundColor: colors.tomatoSoft,
+  },
+  safetyText: { flex: 1, color: colors.ink },
 });

@@ -433,6 +433,23 @@ function difficultyFor(index) {
   return index % 17 === 0 ? "hard" : index % 5 === 0 ? "medium" : "easy";
 }
 
+const criticalProteins = new Set([
+  "chicken",
+  "turkey",
+  "pork",
+  "salmon",
+  "cod",
+  "tuna",
+  "shrimp",
+]);
+
+function cookingGuidance(ingredientId, locale) {
+  if (!criticalProteins.has(ingredientId)) return "";
+  return locale === "de"
+    ? " Dabei vollständig durchgaren; Geflügel und Schweinefleisch dürfen innen nicht mehr rosa sein, Fisch und Meeresfrüchte müssen durchgehend heiß und opak sein."
+    : " Cook it through completely; poultry and pork must no longer be pink inside, and fish or seafood must be hot and opaque throughout.";
+}
+
 function createRecipe({
   id,
   titleDe,
@@ -548,8 +565,8 @@ addFamily(
           `Cut the ${name(vegetable, "en")} into bite-sized pieces and sear in olive oil in a large pan.`,
         ),
         text(
-          `${name(protein, "de")} zugeben, würzen und alles garen, bis die Zutaten aromatisch verbunden sind.`,
-          `Add the ${name(protein, "en")}, season, and cook until the ingredients are aromatic and combined.`,
+          `${name(protein, "de")} zugeben, würzen und alles garen, bis die Zutaten aromatisch verbunden sind.${cookingGuidance(protein, "de")}`,
+          `Add the ${name(protein, "en")}, season, and cook until the ingredients are aromatic and combined.${cookingGuidance(protein, "en")}`,
         ),
         text(
           `${name(dressing, "de")} mit Zitronensaft verrühren, die Bowl anrichten und das Dressing darübergeben.`,
@@ -603,8 +620,8 @@ addFamily(
           `Cut the ${name(vegetable, "en")} and sauté it with garlic in olive oil.`,
         ),
         text(
-          `${name(protein, "de")} und Dosentomaten einrühren, würzen und die Sauce sanft einkochen.`,
-          `Stir in the ${name(protein, "en")} and canned tomatoes, season, and gently reduce the sauce.`,
+          `${name(protein, "de")} und Dosentomaten einrühren, würzen und die Sauce sanft einkochen.${cookingGuidance(protein, "de")}`,
+          `Stir in the ${name(protein, "en")} and canned tomatoes, season, and gently reduce the sauce.${cookingGuidance(protein, "en")}`,
         ),
         text(
           `Die Pasta mit der Sauce vermengen, bei Bedarf Kochwasser zugeben und mit Kräutern servieren.`,

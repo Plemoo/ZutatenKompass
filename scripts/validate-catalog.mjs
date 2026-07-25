@@ -111,13 +111,22 @@ for (const title of findDuplicates(titlesEn))
 
 for (const recipe of catalog.recipes) {
   requireLocalized(recipe.title, `recipe ${recipe.id}.title`);
-  if (!Number.isInteger(recipe.servings) || recipe.servings < 1) {
+  if (
+    !Number.isInteger(recipe.servings) ||
+    recipe.servings < 1 ||
+    recipe.servings > 12
+  ) {
     errors.push(`recipe ${recipe.id} has invalid servings`);
   }
   if (
     !Number.isInteger(recipe.prepMinutes) ||
     !Number.isInteger(recipe.cookMinutes) ||
-    recipe.totalMinutes !== recipe.prepMinutes + recipe.cookMinutes
+    recipe.totalMinutes !== recipe.prepMinutes + recipe.cookMinutes ||
+    recipe.prepMinutes < 1 ||
+    recipe.prepMinutes > 180 ||
+    recipe.cookMinutes < 1 ||
+    recipe.cookMinutes > 300 ||
+    recipe.totalMinutes > 360
   ) {
     errors.push(`recipe ${recipe.id} has inconsistent times`);
   }
@@ -144,7 +153,8 @@ for (const recipe of catalog.recipes) {
     if (
       typeof line.amount !== "number" ||
       !Number.isFinite(line.amount) ||
-      line.amount <= 0
+      line.amount <= 0 ||
+      line.amount > 5000
     ) {
       errors.push(`recipe ${recipe.id} ingredient ${index} has invalid amount`);
     }
@@ -165,6 +175,33 @@ for (const recipe of catalog.recipes) {
       (step?.en?.trim().length ?? 0) < 30
     ) {
       errors.push(`recipe ${recipe.id} step ${index} is not substantive`);
+    }
+  }
+
+  const criticalProteinIds = new Set([
+    "chicken",
+    "turkey",
+    "pork",
+    "salmon",
+    "cod",
+    "tuna",
+    "shrimp",
+  ]);
+  const containsCriticalProtein = recipe.ingredients.some(({ ingredientId }) =>
+    criticalProteinIds.has(ingredientId),
+  );
+  if (containsCriticalProtein) {
+    const instructionsDe = recipe.steps.map(({ de }) => de).join(" ");
+    const instructionsEn = recipe.steps.map(({ en }) => en).join(" ");
+    if (
+      !/vollständig (?:durch)?garen|durchgehend heiß|nicht mehr rosa|opak/i.test(
+        instructionsDe,
+      ) ||
+      !/cook(?:ed)?(?: [a-z]+){0,3} through|hot and opaque|no longer (?:be )?pink/i.test(
+        instructionsEn,
+      )
+    ) {
+      errors.push(`recipe ${recipe.id} lacks explicit safe cooking guidance`);
     }
   }
   if (

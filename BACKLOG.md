@@ -157,7 +157,7 @@ Rezeptauswahl.
 
 **Abhängigkeiten:** ZK-020.
 
-### ZK-024 – Datenqualität und Lebensmittelsicherheit (`P0`, Geplant)
+### ZK-024 – Datenqualität und Lebensmittelsicherheit (`P0`, Erledigt)
 
 **Story:** Als Nutzer möchte ich plausible und verständliche Rezeptangaben.
 
@@ -437,7 +437,7 @@ Rezeptauswahl.
 
 ## E8 – Offlinebetrieb, Datenschutz, Medien und Sharing
 
-### ZK-080 – Vollständiger Offlinebetrieb (`P0`, Erledigt)
+### ZK-080 – Vollständiger Offlinebetrieb (`P0`, In Umsetzung)
 
 **Story:** Als Nutzer möchte ich die App ohne Internet bedienen.
 

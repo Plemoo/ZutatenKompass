@@ -22,6 +22,8 @@ export const messages = {
       includeHint: "Zutat eingeben, z. B. Tomate",
       exclude: "Das möchte ich nicht",
       excludeHint: "Zutat ausschließen, z. B. Erdnuss",
+      excludeSafety:
+        "Ausschlüsse sind Komfortfilter und ersetzen keine Allergieprüfung.",
       add: "Hinzufügen",
       suggestion: "Meintest du …?",
       unknown: "Diese Zutat kennen wir noch nicht.",
@@ -121,6 +123,8 @@ export const messages = {
       includeHint: "Enter an ingredient, e.g. tomato",
       exclude: "I do not want this",
       excludeHint: "Exclude an ingredient, e.g. peanut",
+      excludeSafety:
+        "Exclusions are convenience filters and do not replace allergy checks.",
       add: "Add",
       suggestion: "Did you mean …?",
       unknown: "We do not know this ingredient yet.",
