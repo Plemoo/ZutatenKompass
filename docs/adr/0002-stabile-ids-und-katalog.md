@@ -11,7 +11,7 @@ nicht aus Anzeigenamen ableiten.
 ## Entscheidung
 
 Rezepte, Zutaten und Facetten erhalten sprachunabhängige stabile IDs. Katalog und Schema werden
-versioniert und vor Build beziehungsweise Test streng validiert. Mindestens 500 originäre
+versioniert und vor Build beziehungsweise Test streng validiert. Mindestens 1.200 originäre
 Rezepte sind vollständig in DE und EN enthalten.
 
 ## Konsequenzen

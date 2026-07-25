@@ -7,13 +7,14 @@ Rezepte aus einem vollständig mitgelieferten Katalog.
 
 ## Produktumfang V1
 
-- mindestens 500 originär formulierte Rezepte, jeweils vollständig auf Deutsch und Englisch
+- 1.200 originär formulierte Rezepte, jeweils vollständig auf Deutsch und Englisch
+- großer Koch- und Backschwerpunkt mit je 180 Aufläufen und Eintöpfen sowie je 160 Kuchen und Muffins
 - lokale Suche ohne Backend und ohne Internetpflicht
 - UND-Verknüpfung der gewünschten Zutaten; unerwünschte Zutaten werden ausgeschlossen
 - generische Zutatenbegriffe, Synonyme und Tippfehlervorschläge
 - Facetten für Ernährung, Mahlzeit/Gang, Küche/Region, Zeit, Schwierigkeit und Zubereitungsart
 - Ergebnisranking nach möglichst wenigen zusätzlich benötigten Zutaten
-- Favoriten, Sprachwahl, Detailansicht und Teilen über das Betriebssystem
+- Favoriten, Sprachwahl per 🇩🇪-/🇬🇧-Flagge, Detailansicht und Teilen über das Betriebssystem
 - ausschließlich lokale Bild-Assets in V1; das App-Icon ist der verlässliche Fallback
 
 Wichtig: Zutaten-Ausschlüsse sind Komfortfilter und keine medizinisch belastbare

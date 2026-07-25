@@ -304,6 +304,78 @@ const ingredients = [
   }),
   ingredient("honey", "Honig", "honey"),
   ingredient("maple-syrup", "Ahornsirup", "maple syrup"),
+  ingredient("sugar", "Zucker", "sugar", { staple: true }),
+  ingredient("brown-sugar", "Brauner Zucker", "brown sugar", {
+    parentId: "sugar",
+  }),
+  ingredient("baking-powder", "Backpulver", "baking powder", {
+    staple: true,
+  }),
+  ingredient("baking-soda", "Natron", "baking soda", { staple: true }),
+  ingredient("yeast", "Hefe", "yeast"),
+  ingredient("vanilla", "Vanille", "vanilla", {
+    deAliases: ["Vanilleextrakt"],
+    enAliases: ["vanilla extract"],
+    staple: true,
+  }),
+  ingredient("cinnamon", "Zimt", "cinnamon", { staple: true }),
+  ingredient("cocoa", "Kakaopulver", "cocoa powder", {
+    deAliases: ["Kakao"],
+  }),
+  ingredient("chocolate", "Schokolade", "chocolate"),
+  ingredient("dark-chocolate", "Zartbitterschokolade", "dark chocolate", {
+    parentId: "chocolate",
+  }),
+  ingredient("white-chocolate", "Weiße Schokolade", "white chocolate", {
+    parentId: "chocolate",
+  }),
+  ingredient("oat", "Haferflocke", "oat", {
+    parentId: "grain",
+    deAliases: ["Haferflocken"],
+    enAliases: ["oats", "rolled oats"],
+  }),
+  ingredient("cornstarch", "Speisestärke", "cornstarch", {
+    staple: true,
+  }),
+  ingredient("banana", "Banane", "banana", {
+    parentId: "fruit",
+    deAliases: ["Bananen"],
+    enAliases: ["bananas"],
+  }),
+  ingredient("orange", "Orange", "orange", {
+    parentId: "fruit",
+    deAliases: ["Orangen"],
+    enAliases: ["oranges"],
+  }),
+  ingredient("berry", "Beere", "berry", {
+    parentId: "fruit",
+    deAliases: ["Beeren"],
+    enAliases: ["berries"],
+  }),
+  ingredient("blueberry", "Heidelbeere", "blueberry", {
+    parentId: "berry",
+    deAliases: ["Blaubeere", "Heidelbeeren", "Blaubeeren"],
+    enAliases: ["blueberries"],
+  }),
+  ingredient("raspberry", "Himbeere", "raspberry", {
+    parentId: "berry",
+    deAliases: ["Himbeeren"],
+    enAliases: ["raspberries"],
+  }),
+  ingredient("strawberry", "Erdbeere", "strawberry", {
+    parentId: "berry",
+    deAliases: ["Erdbeeren"],
+    enAliases: ["strawberries"],
+  }),
+  ingredient("cherry", "Kirsche", "cherry", {
+    parentId: "fruit",
+    deAliases: ["Kirschen"],
+    enAliases: ["cherries"],
+  }),
+  ingredient("coconut-flakes", "Kokosraspel", "desiccated coconut", {
+    deAliases: ["Kokosflocken"],
+    enAliases: ["coconut flakes"],
+  }),
 ];
 
 const facetGroups = [
@@ -314,6 +386,8 @@ const facetGroups = [
       ["meal-main", "Hauptgericht", "Main course"],
       ["meal-lunch", "Mittagessen", "Lunch", "meal-main"],
       ["meal-dinner", "Abendessen", "Dinner", "meal-main"],
+      ["meal-breakfast", "Frühstück", "Breakfast"],
+      ["meal-dessert", "Dessert und Gebäck", "Dessert and baking"],
     ],
   },
   {
@@ -368,6 +442,9 @@ const facetGroups = [
       ["method-pot", "Topf", "Pot"],
       ["method-oven", "Ofen", "Oven"],
       ["method-salad", "Salat", "Salad"],
+      ["method-casserole", "Auflauf", "Casserole"],
+      ["method-stew", "Eintopf und Schmoren", "Stew and braise"],
+      ["method-baking", "Backen", "Baking"],
     ],
   },
 ].map((group) => ({
@@ -415,6 +492,8 @@ const vegetarianIds = new Set([
   "milk",
   "butter",
   "egg",
+  "dark-chocolate",
+  "white-chocolate",
 ]);
 
 function dietFacet(ids) {
@@ -460,6 +539,7 @@ function createRecipe({
   difficulty,
   cuisine,
   method,
+  meal,
   steps,
 }) {
   const allIngredients = uniqueIngredients(ingredientLines);
@@ -475,7 +555,7 @@ function createRecipe({
     ingredients: allIngredients,
     steps,
     facetOptionIds: [
-      total <= 35 ? "meal-lunch" : "meal-dinner",
+      meal ?? (total <= 35 ? "meal-lunch" : "meal-dinner"),
       dietFacet(allIngredients.map((line) => line.ingredientId)),
       cuisine,
       timeFacet(total),
@@ -855,6 +935,264 @@ addFamily(
         text(
           `Alle Zutaten behutsam mischen, mit Kräutern abschmecken und kurz durchziehen lassen.`,
           `Gently combine all ingredients, season with herbs, and let the flavors mingle briefly.`,
+        ),
+      ],
+    }),
+);
+
+const casseroleBases = [
+  "potato",
+  "sweet-potato",
+  "penne",
+  "brown-rice",
+  "quinoa",
+];
+const casseroleProteins = [
+  "chickpea",
+  "lentil",
+  "white-bean",
+  "tofu",
+  "chicken",
+  "salmon",
+  "feta",
+  "mozzarella",
+];
+addFamily(
+  "casserole",
+  180,
+  combinationsOf(casseroleBases, casseroleProteins, vegetables),
+  ([base, protein, vegetable], index, id) =>
+    createRecipe({
+      id,
+      titleDe: `${name(base, "de")}-Auflauf mit ${name(protein, "de")} und ${name(vegetable, "de")}`,
+      titleEn: `${name(base, "en")} casserole with ${name(protein, "en")} and ${name(vegetable, "en")}`,
+      ingredientLines: [
+        amount(base, 420, "g", "g"),
+        amount(protein, 280, "g", "g"),
+        amount(vegetable, 340, "g", "g"),
+        amount("cream", 180, "ml", "ml"),
+        amount("mozzarella", 140, "g", "g"),
+        amount("onion", 1, "Stück", "piece"),
+        amount("garlic", 2, "Zehen", "cloves"),
+        amount("thyme", 2, "TL", "tsp"),
+        amount("black-pepper", 1, "Prise", "pinch"),
+      ],
+      prep: 18 + (index % 7),
+      cook: 34 + (index % 13),
+      difficulty: difficultyFor(index + 12),
+      cuisine: index % 2 ? "cuisine-european" : "cuisine-modern",
+      method: "method-casserole",
+      steps: [
+        text(
+          `Den Backofen auf 190 °C Ober-/Unterhitze vorheizen und eine Auflaufform einfetten.`,
+          `Preheat the oven to 190°C/375°F conventional and grease a casserole dish.`,
+        ),
+        text(
+          `${name(base, "de")} vorbereiten, ${name(vegetable, "de")} schneiden und beides mit Zwiebel und Knoblauch in die Form geben.`,
+          `Prepare the ${name(base, "en")}, cut the ${name(vegetable, "en")}, and place both in the dish with onion and garlic.`,
+        ),
+        text(
+          `${name(protein, "de")} untermischen, Sahne würzen und darübergießen.${cookingGuidance(protein, "de")}`,
+          `Fold in the ${name(protein, "en")}, season the cream, and pour it over.${cookingGuidance(protein, "en")}`,
+        ),
+        text(
+          `Mit Mozzarella bestreuen und backen, bis der Auflauf durchgegart und goldbraun ist; vor dem Servieren fünf Minuten ruhen lassen.`,
+          `Top with mozzarella and bake until the casserole is cooked through and golden; rest for five minutes before serving.`,
+        ),
+      ],
+    }),
+);
+
+const stewProteins = [
+  "chickpea",
+  "lentil",
+  "kidney-bean",
+  "tofu",
+  "chicken",
+  "beef",
+  "pork",
+];
+const stewAccents = [
+  "potato",
+  "sweet-potato",
+  "leek",
+  "celery",
+  "cabbage",
+  "pea",
+  "corn",
+  "green-bean",
+];
+addFamily(
+  "stew",
+  180,
+  combinationsOf(stewProteins, vegetables, stewAccents).filter(
+    ([, vegetable, accent]) => vegetable !== accent,
+  ),
+  ([protein, vegetable, accent], index, id) =>
+    createRecipe({
+      id,
+      titleDe: `Geschmorter ${name(protein, "de")}-${name(vegetable, "de")}-Eintopf mit ${name(accent, "de")}`,
+      titleEn: `Braised ${name(protein, "en")} and ${name(vegetable, "en")} stew with ${name(accent, "en")}`,
+      ingredientLines: [
+        amount(protein, 320, "g", "g"),
+        amount(vegetable, 300, "g", "g"),
+        amount(accent, 260, "g", "g"),
+        amount("vegetable-broth", 850, "ml", "ml"),
+        amount("canned-tomato", 400, "g", "g"),
+        amount("onion", 1, "Stück", "piece"),
+        amount("garlic", 2, "Zehen", "cloves"),
+        amount(index % 2 ? "rosemary" : "thyme", 2, "TL", "tsp"),
+        amount("olive-oil", 2, "EL", "tbsp"),
+      ],
+      prep: 17 + (index % 6),
+      cook: 38 + (index % 18),
+      difficulty: difficultyFor(index + 14),
+      cuisine: index % 3 ? "cuisine-european" : "cuisine-modern",
+      method: "method-stew",
+      steps: [
+        text(
+          `${name(protein, "de")}, ${name(vegetable, "de")} und ${name(accent, "de")} gleichmäßig vorbereiten und getrennt bereithalten.`,
+          `Prepare the ${name(protein, "en")}, ${name(vegetable, "en")}, and ${name(accent, "en")} evenly and keep them separate.`,
+        ),
+        text(
+          `Zwiebel und Knoblauch in Olivenöl anschwitzen, dann ${name(protein, "de")} kräftig anrösten.`,
+          `Soften the onion and garlic in olive oil, then brown the ${name(protein, "en")} thoroughly.`,
+        ),
+        text(
+          `Gemüse, Dosentomaten und Brühe zugeben und den Eintopf bei kleiner Hitze zugedeckt schmoren.${cookingGuidance(protein, "de")}`,
+          `Add the vegetables, canned tomatoes, and broth, then gently braise the covered stew.${cookingGuidance(protein, "en")}`,
+        ),
+        text(
+          `Den Deckel abnehmen, die Konsistenz einige Minuten einkochen, mit Kräutern abschmecken und heiß servieren.`,
+          `Remove the lid, reduce to the desired consistency for a few minutes, season with herbs, and serve hot.`,
+        ),
+      ],
+    }),
+);
+
+const bakingFruits = [
+  "apple",
+  "pear",
+  "banana",
+  "mango",
+  "blueberry",
+  "raspberry",
+  "strawberry",
+  "cherry",
+  "orange",
+];
+const bakingFlavors = ["vanilla", "cinnamon", "cocoa", "lemon", "orange"];
+const bakingToppings = ["almond", "walnut", "dark-chocolate", "coconut-flakes"];
+const flavorLine = (ingredientId) =>
+  ingredientId === "cocoa"
+    ? amount(ingredientId, 30, "g", "g")
+    : ["lemon", "orange"].includes(ingredientId)
+      ? amount(ingredientId, 1, "Stück", "piece")
+      : amount(ingredientId, 2, "TL", "tsp");
+
+addFamily(
+  "cake",
+  160,
+  combinationsOf(bakingFruits, bakingFlavors, bakingToppings).filter(
+    ([fruit, flavor]) => fruit !== flavor,
+  ),
+  ([fruit, flavor, topping], index, id) =>
+    createRecipe({
+      id,
+      titleDe: `Saftiger ${name(fruit, "de")}-${name(flavor, "de")}-Kuchen mit ${name(topping, "de")}`,
+      titleEn: `Moist ${name(fruit, "en")} and ${name(flavor, "en")} cake with ${name(topping, "en")}`,
+      ingredientLines: [
+        amount("flour", 320, "g", "g"),
+        amount("sugar", 180, "g", "g"),
+        amount("egg", 4, "Stück", "pieces"),
+        amount("butter", 160, "g", "g"),
+        amount("milk", 120, "ml", "ml"),
+        amount("baking-powder", 3, "TL", "tsp"),
+        amount(fruit, 260, "g", "g"),
+        flavorLine(flavor),
+        amount(topping, 80, "g", "g"),
+        amount("salt", 1, "Prise", "pinch"),
+      ],
+      prep: 22 + (index % 8),
+      cook: 42 + (index % 14),
+      difficulty: difficultyFor(index + 16),
+      cuisine: "cuisine-european",
+      method: "method-baking",
+      meal: "meal-dessert",
+      steps: [
+        text(
+          `Den Backofen auf 175 °C Ober-/Unterhitze vorheizen, eine Form fetten und mit etwas Mehl ausstäuben.`,
+          `Preheat the oven to 175°C/350°F conventional, grease a cake tin, and dust it lightly with flour.`,
+        ),
+        text(
+          `Butter und Zucker cremig rühren, die Eier einzeln einarbeiten und anschließend Milch zugeben.`,
+          `Cream the butter and sugar, beat in the eggs one at a time, and then add the milk.`,
+        ),
+        text(
+          `Mehl, Backpulver, Salz und ${name(flavor, "de")} mischen und nur kurz unter die feuchten Zutaten heben.`,
+          `Combine the flour, baking powder, salt, and ${name(flavor, "en")}, then briefly fold them into the wet ingredients.`,
+        ),
+        text(
+          `${name(fruit, "de")} vorbereiten, mit ${name(topping, "de")} unterheben und den Teig gleichmäßig in der Form verteilen.`,
+          `Prepare the ${name(fruit, "en")}, fold it in with the ${name(topping, "en")}, and spread the batter evenly in the tin.`,
+        ),
+        text(
+          `Backen, bis ein Holzstäbchen ohne feuchten Teig herauskommt; den Kuchen vollständig abkühlen lassen und erst dann anschneiden.`,
+          `Bake until a skewer comes out without wet batter; cool the cake completely before slicing.`,
+        ),
+      ],
+    }),
+);
+
+addFamily(
+  "muffin",
+  160,
+  combinationsOf(bakingFruits, bakingFlavors, bakingToppings).filter(
+    ([fruit, flavor]) => fruit !== flavor,
+  ),
+  ([fruit, flavor, topping], index, id) =>
+    createRecipe({
+      id,
+      titleDe: `${name(fruit, "de")}-${name(flavor, "de")}-Muffins mit ${name(topping, "de")}`,
+      titleEn: `${name(fruit, "en")} and ${name(flavor, "en")} muffins with ${name(topping, "en")}`,
+      ingredientLines: [
+        amount("flour", 280, "g", "g"),
+        amount("brown-sugar", 150, "g", "g"),
+        amount("egg", 2, "Stück", "pieces"),
+        amount("milk", 220, "ml", "ml"),
+        amount("neutral-oil", 100, "ml", "ml"),
+        amount("baking-powder", 2, "TL", "tsp"),
+        amount("baking-soda", 1, "TL", "tsp"),
+        amount(fruit, 220, "g", "g"),
+        flavorLine(flavor),
+        amount(topping, 70, "g", "g"),
+      ],
+      prep: 18 + (index % 7),
+      cook: 24 + (index % 8),
+      difficulty: difficultyFor(index + 18),
+      cuisine: "cuisine-modern",
+      method: "method-baking",
+      meal: index % 2 ? "meal-breakfast" : "meal-dessert",
+      steps: [
+        text(
+          `Den Backofen auf 180 °C Ober-/Unterhitze vorheizen und ein Muffinblech mit Papierförmchen auslegen.`,
+          `Preheat the oven to 180°C/355°F conventional and line a muffin tin with paper cases.`,
+        ),
+        text(
+          `Mehl, Backpulver, Natron, braunen Zucker und ${name(flavor, "de")} in einer großen Schüssel gründlich mischen.`,
+          `Thoroughly combine the flour, baking powder, baking soda, brown sugar, and ${name(flavor, "en")} in a large bowl.`,
+        ),
+        text(
+          `Eier, Milch und Öl separat verrühren und nur so lange unter die trockenen Zutaten ziehen, bis kein loses Mehl mehr sichtbar ist.`,
+          `Whisk the eggs, milk, and oil separately, then fold into the dry ingredients only until no loose flour remains.`,
+        ),
+        text(
+          `${name(fruit, "de")} und ${name(topping, "de")} vorsichtig unterheben und den Teig gleichmäßig auf die Förmchen verteilen.`,
+          `Gently fold in the ${name(fruit, "en")} and ${name(topping, "en")}, then divide the batter evenly among the cases.`,
+        ),
+        text(
+          `Die Muffins goldbraun backen, mit der Stäbchenprobe prüfen und vor dem Servieren auf einem Gitter abkühlen lassen.`,
+          `Bake the muffins until golden, check them with a skewer, and cool them on a rack before serving.`,
         ),
       ],
     }),

@@ -7,13 +7,24 @@ import {
 
 describe("bundled recipe catalog", () => {
   it("contains the promised catalog size with stable unique ids", () => {
-    expect(bundledRecipeCatalog.recipes.length).toBeGreaterThanOrEqual(500);
+    expect(bundledRecipeCatalog.recipes.length).toBeGreaterThanOrEqual(1200);
     expect(new Set(bundledRecipeCatalog.recipes.map(({ id }) => id)).size).toBe(
       bundledRecipeCatalog.recipes.length,
     );
     expect(
       new Set(bundledRecipeCatalog.ingredients.map(({ id }) => id)).size,
     ).toBe(bundledRecipeCatalog.ingredients.length);
+  });
+
+  it("contains substantial cooking and baking collections", () => {
+    const byMethod = (method: string) =>
+      bundledRecipeCatalog.recipes.filter(({ facetOptionIds }) =>
+        facetOptionIds.includes(method),
+      );
+
+    expect(byMethod("method-casserole").length).toBeGreaterThanOrEqual(150);
+    expect(byMethod("method-stew").length).toBeGreaterThanOrEqual(150);
+    expect(byMethod("method-baking").length).toBeGreaterThanOrEqual(300);
   });
 
   it("contains complete German and English recipe content", () => {

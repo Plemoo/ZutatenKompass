@@ -19,8 +19,8 @@ const findDuplicates = (values) => [
 if (!Number.isInteger(catalog.version) || catalog.version < 1) {
   errors.push("catalog.version must be a positive integer");
 }
-if (!Array.isArray(catalog.recipes) || catalog.recipes.length < 500) {
-  errors.push("catalog must contain at least 500 recipes");
+if (!Array.isArray(catalog.recipes) || catalog.recipes.length < 1200) {
+  errors.push("catalog must contain at least 1200 recipes");
 }
 
 const ingredientIds = catalog.ingredients.map((item) => item.id);

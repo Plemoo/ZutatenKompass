@@ -7,10 +7,10 @@ import { colors, radius, spacing } from "../../src/ui/theme";
 
 export default function SettingsScreen() {
   const { preference, setPreference, t } = useI18n();
-  const choices: { id: LocalePreference; label: string }[] = [
-    { id: "system", label: t.settings.system },
-    { id: "de", label: t.settings.german },
-    { id: "en", label: t.settings.english },
+  const choices: { id: LocalePreference; label: string; flag: string }[] = [
+    { id: "system", label: t.settings.system, flag: "🌐" },
+    { id: "de", label: t.settings.german, flag: "🇩🇪" },
+    { id: "en", label: t.settings.english, flag: "🇬🇧" },
   ];
 
   return (
@@ -24,6 +24,7 @@ export default function SettingsScreen() {
             const active = preference === choice.id;
             return (
               <Pressable
+                accessibilityLabel={choice.label}
                 accessibilityRole="radio"
                 accessibilityState={{ checked: active }}
                 key={choice.id}
@@ -31,6 +32,13 @@ export default function SettingsScreen() {
                 style={[styles.choice, active && styles.choiceActive]}
                 testID={`language-${choice.id}`}
               >
+                <Typography
+                  accessibilityElementsHidden
+                  importantForAccessibility="no"
+                  style={styles.flag}
+                >
+                  {choice.flag}
+                </Typography>
                 <MaterialCommunityIcons
                   color={active ? colors.leafDark : colors.muted}
                   name={active ? "radiobox-marked" : "radiobox-blank"}
@@ -99,6 +107,7 @@ const styles = StyleSheet.create({
   },
   choiceActive: { backgroundColor: colors.leafSoft },
   choiceLabelActive: { color: colors.leafDark, fontWeight: "700" },
+  flag: { fontSize: 26 },
   info: {
     flexDirection: "row",
     alignItems: "flex-start",

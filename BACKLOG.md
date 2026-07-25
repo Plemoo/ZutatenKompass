@@ -127,14 +127,15 @@ Suche, Übersetzung und Persistenz dieselben Begriffe verwenden.
 
 **Abhängigkeiten:** ZK-020.
 
-### ZK-022 – Mindestens 500 originäre zweisprachige Rezepte (`P0`, Erledigt)
+### ZK-022 – Mindestens 1.200 originäre zweisprachige Rezepte (`P0`, Erledigt)
 
 **Story:** Als Nutzer möchte ich eine breite internationale und abwechslungsreiche
 Rezeptauswahl.
 
 **Akzeptanzkriterien**
 
-- Der validierte Katalog enthält mindestens 500 fachlich unterschiedliche Rezepte.
+- Der validierte Katalog enthält mindestens 1.200 fachlich unterschiedliche Rezepte.
+- Davon sind mindestens 150 Aufläufe, 150 Eintöpfe und 300 Backrezepte.
 - Jedes Rezept ist vollständig und originär auf Deutsch und Englisch formuliert.
 - Enthalten sind gemischte internationale Küchen sowie vegetarische und vegane Optionen.
 - Jedes Rezept enthält Mengen, Einheiten, Portionen, Gesamt-/Vorbereitungs-/Garzeit,
@@ -418,6 +419,8 @@ Rezeptauswahl.
 - Beim Erststart wird Deutsch oder Englisch aus der Gerätesprache gewählt; andere Sprachen
   fallen auf Englisch zurück.
 - Die Sprache ist in der App ohne Neustart umschaltbar.
+- Deutsch und Englisch sind über 🇩🇪- und 🇬🇧-Flaggen sichtbar wählbar; die Systemauswahl
+  ist mit einem Globus gekennzeichnet.
 - UI, Zutaten, Facetten und alle Rezeptfelder wechseln gemeinsam.
 - Fehlende Schlüssel oder Übersetzungen werden in Validierung und Tests erkannt.
 
@@ -563,7 +566,7 @@ Apps teilen.
 ### V1 Feature Complete
 
 - Alle `P0`-Stories sind `Erledigt`.
-- Der Katalog enthält mindestens 500 validierte, vollständige DE-/EN-Rezepte.
+- Der Katalog enthält mindestens 1.200 validierte, vollständige DE-/EN-Rezepte.
 - Kein `P0`-Defekt ist offen; `P1`-Defekte sind bewertet.
 - `pnpm check` ist grün.
 

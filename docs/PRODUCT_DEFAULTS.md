@@ -11,7 +11,7 @@ an einem Default benötigen ein ADR oder eine dokumentierte Produktentscheidung.
 | Zielplattform      | Android V1; iOS-fähige Architektur                                               |
 | Technik            | Expo SDK 57, React Native, TypeScript, pnpm, Node.js 22                          |
 | Backend            | keines                                                                           |
-| Katalog            | mindestens 500 originäre, vollständige Rezepte                                   |
+| Katalog            | mindestens 1.200 originäre, vollständige Rezepte                                 |
 | Sprachen           | Deutsch und Englisch für UI und sämtliche Rezeptdaten                            |
 | Rezeptumfang       | Mengen, Einheiten, Portionen, Zeiten, Schwierigkeit, Zutaten, Schritte, Facetten |
 | Abdeckung          | gemischte internationale Küche, inklusive vegetarisch und vegan                  |
@@ -35,7 +35,8 @@ an einem Default benötigen ein ADR oder eine dokumentierte Produktentscheidung.
 - Expo SQLite hält lokale persistente Daten. Implementierungsdetails bleiben hinter
   Repository-Schnittstellen, damit Tests nicht an SQLite gekoppelt sind.
 - Gerätesprache bestimmt beim Erststart DE oder EN; andere Sprachen fallen auf EN zurück.
-- Eine bewusste In-App-Auswahl überschreibt die Gerätesprache und bleibt lokal gespeichert.
+- Eine bewusste In-App-Auswahl über die 🇩🇪-/🇬🇧-Flaggen überschreibt die Gerätesprache
+  und bleibt lokal gespeichert.
 - Resultate sind deterministisch. Gleichstände werden über lokalisierten Titel und stabile ID
   aufgelöst, sofern kein späteres ADR einen besseren Schlüssel festlegt.
 - Ohne Suchauswahl darf die App eine deterministisch sortierte Gesamtliste anzeigen.
