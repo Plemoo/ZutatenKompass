@@ -1,25 +1,29 @@
 {
   "expo": {
     "name": "ZutatenKompass",
-    "slug": "ZutatenKompass",
+    "slug": "zutatenkompass",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "zutatenkompass",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.plemoo.zutatenkompass"
     },
     "android": {
+      "package": "com.plemoo.zutatenkompass",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": ["expo-router", "expo-localization", "expo-image", "expo-sqlite"]
   }
 }

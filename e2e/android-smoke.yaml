@@ -1,0 +1,15 @@
+appId: com.plemoo.zutatenkompass
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "search-screen"
+- tapOn:
+    id: "ingredient-input-include"
+- inputText: "Tomate"
+- tapOn:
+    id: "ingredient-add-include"
+- tapOn:
+    id: "find-recipes"
+- assertVisible:
+    id: "results-screen"
