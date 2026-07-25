@@ -3,7 +3,7 @@
 ## Ziel
 
 Tests sichern die fachliche Korrektheit der local-first Suche, die Integrität von mindestens
-1.200 zweisprachigen Rezepten und die wichtigsten Android-Nutzerpfade. Die Strategie priorisiert
+100 Grundrezepten, 1.290 zweisprachigen Varianten und die wichtigsten Android-Nutzerpfade. Die Strategie priorisiert
 deterministische Tests nahe an der Domäne und ergänzt sie durch Komponenten-, Integrations- und
 wenige End-to-End-Tests.
 
@@ -71,7 +71,9 @@ Für jede Gruppe werden leer, ein Wert und mehrere Werte geprüft. Zusätzlich:
 
 Die Validierung muss mit Fehlercode fehlschlagen bei:
 
-- weniger als 1.200 Rezepten
+- weniger als 100 Grundrezepten oder 1.290 konkreten Varianten
+- mehrfach sichtbaren Karten derselben `baseRecipeId`
+- weniger als je 30 eigenständigen Mittagsgerichten für Topf, Pfanne oder Backofen
 - doppelter oder ungültiger stabiler ID
 - fehlendem DE-/EN-Feld
 - unbekannter Zutaten- oder Facettenreferenz
@@ -101,7 +103,7 @@ stichprobenartig geprüft. Match-Hervorhebung darf nie allein über Farbe kommun
 
 ## Performance
 
-Ein repräsentativer Katalog mit mindestens 1.200 Rezepten ist Teil der Performancetests. Gemessen
+Ein repräsentativer Katalog mit mindestens 100 Grundrezepten und 1.290 Varianten ist Teil der Performancetests. Gemessen
 werden Resolver, Filter plus Ranking und erstes Rendern einer Ergebnisliste. Für reine
 Domänenlogik gilt 100 ms auf CI-Hardware als Warnbudget; reale Android-Messungen entscheiden
 über UX-Freigabe. Performanceprüfungen verwenden mehrere Queryformen statt eines Idealpfads.

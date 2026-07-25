@@ -11,7 +11,7 @@ an einem Default benötigen ein ADR oder eine dokumentierte Produktentscheidung.
 | Zielplattform      | Android V1; iOS-fähige Architektur                                               |
 | Technik            | Expo SDK 57, React Native, TypeScript, pnpm, Node.js 22                          |
 | Backend            | keines                                                                           |
-| Katalog            | mindestens 1.200 originäre, vollständige Rezepte                                 |
+| Katalog            | mindestens 100 Grundrezepte und 1.290 vollständige Varianten                     |
 | Sprachen           | Deutsch und Englisch für UI und sämtliche Rezeptdaten                            |
 | Rezeptumfang       | Mengen, Einheiten, Portionen, Zeiten, Schwierigkeit, Zutaten, Schritte, Facetten |
 | Abdeckung          | gemischte internationale Küche, inklusive vegetarisch und vegan                  |

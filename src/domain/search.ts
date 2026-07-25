@@ -223,7 +223,7 @@ export function searchRecipes(
     ),
   }));
 
-  const matches = catalog.recipes
+  const rankedMatches = catalog.recipes
     .flatMap((recipe): RecipeMatch[] => {
       const highlights = ingredientHighlights(recipe, includeIds, index);
       if (!highlights) return [];
@@ -240,6 +240,12 @@ export function searchRecipes(
         ) ||
         a.recipe.id.localeCompare(b.recipe.id),
     );
+  const visibleBaseRecipeIds = new Set<string>();
+  const matches = rankedMatches.filter(({ recipe }) => {
+    if (visibleBaseRecipeIds.has(recipe.baseRecipeId)) return false;
+    visibleBaseRecipeIds.add(recipe.baseRecipeId);
+    return true;
+  });
 
   return {
     matches,

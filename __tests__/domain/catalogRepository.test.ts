@@ -7,7 +7,7 @@ import {
 
 describe("bundled recipe catalog", () => {
   it("contains the promised catalog size with stable unique ids", () => {
-    expect(bundledRecipeCatalog.recipes.length).toBeGreaterThanOrEqual(1200);
+    expect(bundledRecipeCatalog.recipes.length).toBeGreaterThanOrEqual(1290);
     expect(new Set(bundledRecipeCatalog.recipes.map(({ id }) => id)).size).toBe(
       bundledRecipeCatalog.recipes.length,
     );
@@ -25,6 +25,29 @@ describe("bundled recipe catalog", () => {
     expect(byMethod("method-casserole").length).toBeGreaterThanOrEqual(150);
     expect(byMethod("method-stew").length).toBeGreaterThanOrEqual(150);
     expect(byMethod("method-baking").length).toBeGreaterThanOrEqual(300);
+  });
+
+  it("contains 90 distinct lunch recipes for oven, pot and pan", () => {
+    for (const method of ["oven", "pot", "pan"]) {
+      const concepts = new Set(
+        bundledRecipeCatalog.recipes
+          .filter(
+            ({ id, facetOptionIds }) =>
+              id.startsWith(`lunch-${method}-`) &&
+              facetOptionIds.includes("meal-lunch") &&
+              facetOptionIds.includes(`method-${method}`),
+          )
+          .map(({ baseRecipeId }) => baseRecipeId),
+      );
+      expect(concepts.size).toBeGreaterThanOrEqual(30);
+      expect(
+        new Set(
+          bundledRecipeCatalog.recipes
+            .filter(({ id }) => id.startsWith(`lunch-${method}-`))
+            .map(({ techniqueSignature }) => techniqueSignature),
+        ).size,
+      ).toBeGreaterThanOrEqual(10);
+    }
   });
 
   it("contains complete German and English recipe content", () => {
@@ -100,5 +123,18 @@ describe("BundledRecipeRepository", () => {
         recipe.facetOptionIds.includes("diet-vegetarian"),
       ),
     ).toBe(true);
+  });
+
+  it("returns every base recipe at most once and collapses oven potato variants", () => {
+    const result = repository.search({
+      includeIngredientIds: ["potato"],
+      excludeIngredientIds: [],
+      facets: [],
+      locale: "de",
+    });
+    const baseIds = result.matches.map(({ recipe }) => recipe.baseRecipeId);
+
+    expect(new Set(baseIds).size).toBe(baseIds.length);
+    expect(baseIds.filter((id) => id === "base-tray")).toHaveLength(1);
   });
 });

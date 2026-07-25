@@ -127,15 +127,21 @@ Suche, Übersetzung und Persistenz dieselben Begriffe verwenden.
 
 **Abhängigkeiten:** ZK-020.
 
-### ZK-022 – Mindestens 1.200 originäre zweisprachige Rezepte (`P0`, Erledigt)
+### ZK-022 – Grundrezepte und Varianten getrennt modellieren (`P0`, Erledigt)
 
 **Story:** Als Nutzer möchte ich eine breite internationale und abwechslungsreiche
 Rezeptauswahl.
 
 **Akzeptanzkriterien**
 
-- Der validierte Katalog enthält mindestens 1.200 fachlich unterschiedliche Rezepte.
-- Davon sind mindestens 150 Aufläufe, 150 Eintöpfe und 300 Backrezepte.
+- Der validierte Katalog enthält mindestens 100 eigenständige Grundrezepte und 1.290
+  vollständig kochbare Varianten.
+- Ein reiner Austausch von Protein, Gemüse, Beilage, Gewürz oder Topping bei gleicher
+  Zubereitungsstruktur zählt als Variante, nicht als weiteres Grundrezept.
+- Jede Variante referenziert eine stabile `baseRecipeId` und eine
+  strukturunabhängige `techniqueSignature`.
+- Pro `baseRecipeId` erscheint in der Suche höchstens eine Karte; gewählt wird die
+  bestpassende zulässige Variante.
 - Jedes Rezept ist vollständig und originär auf Deutsch und Englisch formuliert.
 - Enthalten sind gemischte internationale Küchen sowie vegetarische und vegane Optionen.
 - Jedes Rezept enthält Mengen, Einheiten, Portionen, Gesamt-/Vorbereitungs-/Garzeit,
@@ -182,6 +188,23 @@ Rezeptauswahl.
 - Ein fehlender Favorit führt weder zu Absturz noch zu falschem Rezept.
 
 **Abhängigkeiten:** ZK-020, ZK-060.
+
+### ZK-026 – Eigenständige Mittagsgerichte aus Topf, Pfanne und Backofen (`P0`, Erledigt)
+
+**Story:** Als Nutzer möchte ich vielfältige Mittagsgerichte sehen, statt viele
+Zutatenvarianten desselben Grundrezepts.
+
+**Akzeptanzkriterien**
+
+- Der Katalog enthält mindestens 90 eigenständige Mittags-Grundrezepte.
+- Davon verwenden mindestens 30 den Topf, 30 die Pfanne und 30 den Backofen als Primärmethode.
+- Die 90 Rezepte besitzen jeweils eine eigene `baseRecipeId`; Varianten bestehender
+  Familien zählen nicht für diese Quote.
+- Breite Suchen zeigen unterschiedliche Grundgerichte, während die bestpassende konkrete
+  Zutatenvariante für Zutatenliste, Schritte, Favorit und Share-Link erhalten bleibt.
+- Ein Regressionstest stellt sicher, dass Ofenkartoffel-Varianten nur eine Suchkarte erzeugen.
+
+**Abhängigkeiten:** ZK-020 bis ZK-024, ZK-091.
 
 ## E3 – Eingabe, Suche und Ranking
 
@@ -566,7 +589,8 @@ Apps teilen.
 ### V1 Feature Complete
 
 - Alle `P0`-Stories sind `Erledigt`.
-- Der Katalog enthält mindestens 1.200 validierte, vollständige DE-/EN-Rezepte.
+- Der Katalog enthält mindestens 100 eigenständige Grundrezepte und 1.290 validierte,
+  vollständige DE-/EN-Varianten.
 - Kein `P0`-Defekt ist offen; `P1`-Defekte sind bewertet.
 - `pnpm check` ist grün.
 

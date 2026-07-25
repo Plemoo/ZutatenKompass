@@ -7,8 +7,9 @@ Rezepte aus einem vollständig mitgelieferten Katalog.
 
 ## Produktumfang V1
 
-- 1.200 originär formulierte Rezepte, jeweils vollständig auf Deutsch und Englisch
-- großer Koch- und Backschwerpunkt mit je 180 Aufläufen und Eintöpfen sowie je 160 Kuchen und Muffins
+- 100 eigenständige Grundrezepte mit 1.290 vollständig kochbaren Varianten, jeweils auf Deutsch und Englisch
+- pro Grundrezept höchstens eine Suchkarte; passende Zutatenvarianten werden im Rezept gebündelt
+- 90 eigenständige Mittagsgerichte: je 30 für Topf, Pfanne und Backofen
 - lokale Suche ohne Backend und ohne Internetpflicht
 - UND-Verknüpfung der gewünschten Zutaten; unerwünschte Zutaten werden ausgeschlossen
 - generische Zutatenbegriffe, Synonyme und Tippfehlervorschläge

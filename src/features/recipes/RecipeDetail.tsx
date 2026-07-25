@@ -90,6 +90,14 @@ export function RecipeDetail({
           </View>
         </View>
       )}
+      {recipe.variationLabel && (
+        <View style={styles.variationMatch}>
+          <Typography kind="caption" style={styles.variationMatchTitle}>
+            {t.detail.selectedVariation}
+          </Typography>
+          <Typography>{recipe.variationLabel[locale]}</Typography>
+        </View>
+      )}
       <View style={styles.section}>
         <Typography kind="heading">{t.detail.ingredients}</Typography>
         {recipe.ingredients.map((ingredient) => {
@@ -126,6 +134,23 @@ export function RecipeDetail({
           </View>
         ))}
       </View>
+      {recipe.variationOptions && recipe.variationOptions.length > 0 && (
+        <View style={styles.section}>
+          <Typography kind="heading">{t.detail.variations}</Typography>
+          {recipe.variationOptions.map((variation) => (
+            <View key={variation[locale]} style={styles.variationOption}>
+              <MaterialCommunityIcons
+                color={colors.leaf}
+                name="swap-horizontal"
+                size={22}
+              />
+              <Typography style={styles.stepText}>
+                {variation[locale]}
+              </Typography>
+            </View>
+          ))}
+        </View>
+      )}
     </View>
   );
 }
@@ -162,6 +187,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.leafSoft,
   },
   facetText: { color: colors.leafDark, fontWeight: "700" },
+  variationMatch: {
+    gap: spacing.xs,
+    padding: spacing.md,
+    borderRadius: radius.md,
+    backgroundColor: colors.leafSoft,
+  },
+  variationMatchTitle: { color: colors.leafDark, fontWeight: "700" },
   section: { gap: spacing.md },
   ingredient: {
     minHeight: 48,
@@ -189,4 +221,9 @@ const styles = StyleSheet.create({
   },
   stepNumberText: { color: colors.tomato, fontWeight: "800" },
   stepText: { flex: 1 },
+  variationOption: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: spacing.sm,
+  },
 });

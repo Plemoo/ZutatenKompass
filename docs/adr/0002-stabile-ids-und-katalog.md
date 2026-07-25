@@ -11,8 +11,10 @@ nicht aus Anzeigenamen ableiten.
 ## Entscheidung
 
 Rezepte, Zutaten und Facetten erhalten sprachunabhängige stabile IDs. Katalog und Schema werden
-versioniert und vor Build beziehungsweise Test streng validiert. Mindestens 1.200 originäre
-Rezepte sind vollständig in DE und EN enthalten.
+versioniert und vor Build beziehungsweise Test streng validiert. Varianten besitzen eine
+stabile Rezept-ID und referenzieren zusätzlich eine sprachunabhängige `baseRecipeId`.
+Mindestens 100 Grundrezepte und 1.290 vollständig kochbare Varianten sind in DE und EN
+enthalten. Die Suche gibt je `baseRecipeId` höchstens einen Treffer zurück.
 
 ## Konsequenzen
 

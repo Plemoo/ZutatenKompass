@@ -19,8 +19,8 @@ const findDuplicates = (values) => [
 if (!Number.isInteger(catalog.version) || catalog.version < 1) {
   errors.push("catalog.version must be a positive integer");
 }
-if (!Array.isArray(catalog.recipes) || catalog.recipes.length < 1200) {
-  errors.push("catalog must contain at least 1200 recipes");
+if (!Array.isArray(catalog.recipes) || catalog.recipes.length < 1290) {
+  errors.push("catalog must contain at least 1290 concrete recipe variants");
 }
 
 const ingredientIds = catalog.ingredients.map((item) => item.id);
@@ -98,19 +98,85 @@ for (const group of catalog.facets) {
 const recipeIds = catalog.recipes.map((recipe) => recipe.id);
 for (const id of findDuplicates(recipeIds))
   errors.push(`duplicate recipe id: ${id}`);
-const titlesDe = catalog.recipes.map((recipe) =>
-  recipe.title?.de?.toLocaleLowerCase("de"),
+const baseRecipeIds = new Set(
+  catalog.recipes.map((recipe) => recipe.baseRecipeId),
 );
-const titlesEn = catalog.recipes.map((recipe) =>
-  recipe.title?.en?.toLocaleLowerCase("en"),
-);
-for (const title of findDuplicates(titlesDe))
-  errors.push(`duplicate German recipe title: ${title}`);
-for (const title of findDuplicates(titlesEn))
-  errors.push(`duplicate English recipe title: ${title}`);
+if (baseRecipeIds.size < 100) {
+  errors.push("catalog must contain at least 100 distinct base recipes");
+}
+for (const method of ["oven", "pot", "pan"]) {
+  const methodRecipes = catalog.recipes.filter(
+    (recipe) =>
+      recipe.id.startsWith(`lunch-${method}-`) &&
+      recipe.facetOptionIds.includes("meal-lunch") &&
+      recipe.facetOptionIds.includes(`method-${method}`),
+  );
+  const distinctLunchConcepts = new Set(
+    methodRecipes.map((recipe) => recipe.baseRecipeId),
+  );
+  if (distinctLunchConcepts.size < 30) {
+    errors.push(
+      `catalog must contain at least 30 lunch base recipes for method-${method}`,
+    );
+  }
+  const signatureCounts = new Map();
+  for (const recipe of methodRecipes) {
+    signatureCounts.set(
+      recipe.techniqueSignature,
+      (signatureCounts.get(recipe.techniqueSignature) ?? 0) + 1,
+    );
+  }
+  if (signatureCounts.size < 10) {
+    errors.push(`method-${method} must cover at least 10 techniques`);
+  }
+  if ([...signatureCounts.values()].some((count) => count > 6)) {
+    errors.push(`one technique dominates more than 20% of method-${method}`);
+  }
+}
+
+for (const locale of ["de", "en"]) {
+  const titleOwners = new Map();
+  const baseTitles = new Map();
+  for (const recipe of catalog.recipes) {
+    const title = recipe.title?.[locale]?.toLocaleLowerCase(locale);
+    const previousOwner = titleOwners.get(title);
+    if (previousOwner && previousOwner !== recipe.baseRecipeId) {
+      errors.push(`duplicate ${locale} title across base recipes: ${title}`);
+    }
+    titleOwners.set(title, recipe.baseRecipeId);
+    const previousTitle = baseTitles.get(recipe.baseRecipeId);
+    if (previousTitle && previousTitle !== title) {
+      errors.push(
+        `base recipe ${recipe.baseRecipeId} has inconsistent ${locale} titles`,
+      );
+    }
+    baseTitles.set(recipe.baseRecipeId, title);
+  }
+}
 
 for (const recipe of catalog.recipes) {
+  if (
+    typeof recipe.baseRecipeId !== "string" ||
+    recipe.baseRecipeId.trim().length === 0
+  ) {
+    errors.push(`recipe ${recipe.id} has no baseRecipeId`);
+  }
+  if (
+    typeof recipe.techniqueSignature !== "string" ||
+    recipe.techniqueSignature.trim().length === 0
+  ) {
+    errors.push(`recipe ${recipe.id} has no techniqueSignature`);
+  }
   requireLocalized(recipe.title, `recipe ${recipe.id}.title`);
+  if (recipe.variationLabel) {
+    requireLocalized(
+      recipe.variationLabel,
+      `recipe ${recipe.id}.variationLabel`,
+    );
+  }
+  for (const [index, option] of (recipe.variationOptions ?? []).entries()) {
+    requireLocalized(option, `recipe ${recipe.id}.variationOptions[${index}]`);
+  }
   if (
     !Number.isInteger(recipe.servings) ||
     recipe.servings < 1 ||
@@ -223,6 +289,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `Catalog valid: ${catalog.recipes.length} recipes, ${catalog.ingredients.length} ingredients, ${facetOptionIds.length} facet options.`,
+    `Catalog valid: ${baseRecipeIds.size} base recipes, ${catalog.recipes.length} variants, ${catalog.ingredients.length} ingredients, ${facetOptionIds.length} facet options.`,
   );
 }

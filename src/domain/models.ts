@@ -21,7 +21,11 @@ export interface RecipeIngredient {
 
 export interface Recipe {
   readonly id: string;
+  readonly baseRecipeId: string;
+  readonly techniqueSignature: string;
   readonly title: LocalizedText;
+  readonly variationLabel?: LocalizedText;
+  readonly variationOptions?: readonly LocalizedText[];
   readonly servings: number;
   readonly prepMinutes: number;
   readonly cookMinutes: number;

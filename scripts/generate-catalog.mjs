@@ -1198,8 +1198,900 @@ addFamily(
     }),
 );
 
+const lunchConcepts = {
+  oven: [
+    [
+      "gemuese-lasagne",
+      "Gemüse-Lasagne",
+      "Vegetable lasagna",
+      "pasta",
+      "zucchini",
+    ],
+    ["moussaka", "Moussaka", "Moussaka", "eggplant", "potato"],
+    ["shepherds-pie", "Shepherd’s Pie", "Shepherd’s pie", "beef", "potato"],
+    ["fisch-pie", "Fisch-Pie", "Fish pie", "cod", "potato"],
+    [
+      "gefuellte-paprika",
+      "Gefüllte Paprika",
+      "Stuffed peppers",
+      "bell-pepper",
+      "quinoa",
+    ],
+    [
+      "gefuellte-zucchini",
+      "Gefüllte Zucchini",
+      "Stuffed zucchini",
+      "zucchini",
+      "lentil",
+    ],
+    [
+      "auberginen-parmigiana",
+      "Auberginen-Parmigiana",
+      "Eggplant parmigiana",
+      "eggplant",
+      "parmesan",
+    ],
+    [
+      "haehnchen-parmigiana",
+      "Hähnchen-Parmigiana",
+      "Chicken parmigiana",
+      "chicken",
+      "parmesan",
+    ],
+    [
+      "lachs-pergament",
+      "Lachs aus dem Pergament",
+      "Salmon en papillote",
+      "salmon",
+      "lemon",
+    ],
+    [
+      "kabeljau-kraeuterkruste",
+      "Kabeljau mit Kräuterkruste",
+      "Herb-crusted cod",
+      "cod",
+      "bread",
+    ],
+    ["hackbraten", "Saftiger Hackbraten", "Juicy meatloaf", "beef", "egg"],
+    [
+      "pilz-ofenrisotto",
+      "Pilz-Ofenrisotto",
+      "Baked mushroom risotto",
+      "brown-rice",
+      "mushroom",
+    ],
+    [
+      "brokkoli-gratin",
+      "Brokkoli-Gratin",
+      "Broccoli gratin",
+      "broccoli",
+      "cheddar",
+    ],
+    [
+      "blumenkohl-kaese",
+      "Blumenkohl in Käsesauce",
+      "Cauliflower cheese",
+      "cauliflower",
+      "gouda",
+    ],
+    [
+      "spinat-feta-quiche",
+      "Spinat-Feta-Quiche",
+      "Spinach and feta quiche",
+      "spinach",
+      "feta",
+    ],
+    [
+      "kartoffelgratin",
+      "Klassisches Kartoffelgratin",
+      "Classic potato gratin",
+      "potato",
+      "cream",
+    ],
+    [
+      "suesskartoffelgratin",
+      "Süßkartoffelgratin",
+      "Sweet potato gratin",
+      "sweet-potato",
+      "cream",
+    ],
+    [
+      "bohnen-enchiladas",
+      "Bohnen-Enchiladas",
+      "Bean enchiladas",
+      "tortilla",
+      "kidney-bean",
+    ],
+    [
+      "kuerbis-feta",
+      "Gebackener Kürbis mit Feta",
+      "Baked pumpkin with feta",
+      "pumpkin",
+      "feta",
+    ],
+    [
+      "ofen-frittata",
+      "Ofen-Frittata mit Spargel",
+      "Baked asparagus frittata",
+      "egg",
+      "asparagus",
+    ],
+    [
+      "ofen-ratatouille",
+      "Ratatouille aus dem Ofen",
+      "Oven-baked ratatouille",
+      "zucchini",
+      "eggplant",
+    ],
+    [
+      "blech-falafel",
+      "Blech-Falafel",
+      "Sheet-pan falafel",
+      "chickpea",
+      "sesame",
+    ],
+    [
+      "knuspertofu",
+      "Knuspriger Ofen-Tofu",
+      "Crispy baked tofu",
+      "tofu",
+      "cornstarch",
+    ],
+    [
+      "lauch-kartoffel-pie",
+      "Lauch-Kartoffel-Pie",
+      "Leek and potato pie",
+      "leek",
+      "potato",
+    ],
+    [
+      "kohlrouladen",
+      "Kohlrouladen aus dem Ofen",
+      "Oven-baked cabbage rolls",
+      "cabbage",
+      "beef",
+    ],
+    [
+      "penne-al-forno",
+      "Penne al forno",
+      "Penne al forno",
+      "penne",
+      "mozzarella",
+    ],
+    [
+      "feta-pasta",
+      "Gebackene Feta-Pasta",
+      "Baked feta pasta",
+      "spaghetti",
+      "feta",
+    ],
+    [
+      "brathaehnchen",
+      "Kräuter-Brathähnchen",
+      "Herb-roasted chicken",
+      "chicken",
+      "rosemary",
+    ],
+    [
+      "senf-schweinebraten",
+      "Senf-Schweinebraten",
+      "Mustard roast pork",
+      "pork",
+      "mustard",
+    ],
+    [
+      "gemuese-pastete",
+      "Gemüse-Pastete",
+      "Vegetable pie",
+      "cauliflower",
+      "pea",
+    ],
+  ],
+  pot: [
+    [
+      "chili-con-carne",
+      "Chili con Carne",
+      "Chili con carne",
+      "beef",
+      "kidney-bean",
+    ],
+    [
+      "chili-sin-carne",
+      "Chili sin Carne",
+      "Vegetarian chili",
+      "lentil",
+      "kidney-bean",
+    ],
+    ["rindergulasch", "Rindergulasch", "Beef goulash", "beef", "bell-pepper"],
+    [
+      "boeuf-bourguignon",
+      "Boeuf Bourguignon",
+      "Boeuf bourguignon",
+      "beef",
+      "mushroom",
+    ],
+    [
+      "haehnchenfrikassee",
+      "Hähnchenfrikassee",
+      "Chicken fricassee",
+      "chicken",
+      "pea",
+    ],
+    [
+      "pilzrisotto",
+      "Cremiges Pilzrisotto",
+      "Creamy mushroom risotto",
+      "brown-rice",
+      "mushroom",
+    ],
+    [
+      "kuerbisrisotto",
+      "Kürbisrisotto",
+      "Pumpkin risotto",
+      "brown-rice",
+      "pumpkin",
+    ],
+    [
+      "linsendal",
+      "Rotes Linsendal",
+      "Red lentil dal",
+      "lentil",
+      "coconut-milk",
+    ],
+    ["butter-chicken", "Butter Chicken", "Butter chicken", "chicken", "butter"],
+    [
+      "tikka-masala",
+      "Chicken Tikka Masala",
+      "Chicken tikka masala",
+      "chicken",
+      "yogurt",
+    ],
+    [
+      "thai-curry",
+      "Grünes Gemüse-Curry",
+      "Green vegetable curry",
+      "tofu",
+      "coconut-milk",
+    ],
+    [
+      "kichererbsen-tagine",
+      "Kichererbsen-Tajine",
+      "Chickpea tagine",
+      "chickpea",
+      "carrot",
+    ],
+    ["jambalaya", "Jambalaya", "Jambalaya", "brown-rice", "shrimp"],
+    ["paella", "Gemüse-Paella", "Vegetable paella", "brown-rice", "green-bean"],
+    [
+      "erbseneintopf",
+      "Klassischer Erbseneintopf",
+      "Classic pea stew",
+      "pea",
+      "potato",
+    ],
+    ["minestrone", "Minestrone", "Minestrone", "white-bean", "pasta"],
+    ["kartoffelsuppe", "Kartoffelsuppe", "Potato soup", "potato", "leek"],
+    [
+      "tomatensuppe",
+      "Geröstete Tomatensuppe",
+      "Roasted tomato soup",
+      "tomato",
+      "basil",
+    ],
+    [
+      "kuerbissuppe",
+      "Kürbis-Kokos-Suppe",
+      "Pumpkin coconut soup",
+      "pumpkin",
+      "coconut-milk",
+    ],
+    [
+      "fischsuppe",
+      "Mediterrane Fischsuppe",
+      "Mediterranean fish soup",
+      "cod",
+      "tomato",
+    ],
+    [
+      "linsensuppe",
+      "Linsensuppe mit Wurzelgemüse",
+      "Lentil root vegetable soup",
+      "lentil",
+      "carrot",
+    ],
+    [
+      "zwiebelsuppe",
+      "Französische Zwiebelsuppe",
+      "French onion soup",
+      "onion",
+      "bread",
+    ],
+    [
+      "kohlrouladen-topf",
+      "Geschmorte Kohlrouladen",
+      "Braised cabbage rolls",
+      "cabbage",
+      "beef",
+    ],
+    ["rinderrouladen", "Rinderrouladen", "Beef roulades", "beef", "mustard"],
+    ["stroganoff", "Beef Stroganoff", "Beef stroganoff", "beef", "mushroom"],
+    ["ossobuco", "Ossobuco", "Ossobuco", "beef", "celery"],
+    [
+      "ratatouille-topf",
+      "Geschmorte Ratatouille",
+      "Braised ratatouille",
+      "eggplant",
+      "zucchini",
+    ],
+    [
+      "weisse-bohnen",
+      "Weiße Bohnen in Tomatensauce",
+      "White beans in tomato sauce",
+      "white-bean",
+      "tomato",
+    ],
+    [
+      "kokos-fisch",
+      "Kokos-Fischtopf",
+      "Coconut fish stew",
+      "salmon",
+      "coconut-milk",
+    ],
+    [
+      "gemuese-couscous",
+      "Gedämpfter Gemüse-Couscous",
+      "Steamed vegetable couscous",
+      "couscous",
+      "cauliflower",
+    ],
+  ],
+  pan: [
+    [
+      "jaegerschnitzel",
+      "Jägerschnitzel",
+      "Hunter-style schnitzel",
+      "pork",
+      "mushroom",
+    ],
+    [
+      "haehnchen-schnitzel",
+      "Hähnchenschnitzel",
+      "Chicken schnitzel",
+      "chicken",
+      "bread",
+    ],
+    ["cordon-bleu", "Cordon bleu", "Cordon bleu", "pork", "gouda"],
+    ["kartoffelpuffer", "Kartoffelpuffer", "Potato pancakes", "potato", "egg"],
+    [
+      "gemuesepuffer",
+      "Gemüsepuffer",
+      "Vegetable fritters",
+      "zucchini",
+      "carrot",
+    ],
+    ["fischfrikadellen", "Fischfrikadellen", "Fish cakes", "cod", "potato"],
+    [
+      "falafel-pfanne",
+      "Pfannen-Falafel",
+      "Pan-fried falafel",
+      "chickpea",
+      "parsley",
+    ],
+    [
+      "gebratener-reis",
+      "Gebratener Reis mit Gemüse",
+      "Vegetable fried rice",
+      "brown-rice",
+      "pea",
+    ],
+    ["pad-thai", "Pad Thai", "Pad Thai", "pasta", "peanut"],
+    ["yakisoba", "Yakisoba", "Yakisoba", "spaghetti", "cabbage"],
+    [
+      "schupfnudelpfanne",
+      "Kartoffelnudel-Gemüsepfanne",
+      "Potato noodle skillet",
+      "potato",
+      "cabbage",
+    ],
+    ["bauernomelett", "Bauernomelett", "Farmer’s omelette", "egg", "potato"],
+    [
+      "tortilla-espanola",
+      "Tortilla Española",
+      "Spanish tortilla",
+      "egg",
+      "onion",
+    ],
+    ["shakshuka", "Shakshuka", "Shakshuka", "egg", "tomato"],
+    [
+      "haehnchen-wok",
+      "Hähnchen-Gemüse-Wok",
+      "Chicken vegetable stir-fry",
+      "chicken",
+      "broccoli",
+    ],
+    [
+      "tofu-wok",
+      "Tofu-Wok mit Sesam",
+      "Sesame tofu stir-fry",
+      "tofu",
+      "sesame",
+    ],
+    [
+      "rind-paprika",
+      "Rindfleisch-Paprika-Pfanne",
+      "Beef and pepper skillet",
+      "beef",
+      "bell-pepper",
+    ],
+    [
+      "lachs-spinat",
+      "Lachs auf Rahmspinat",
+      "Salmon with creamy spinach",
+      "salmon",
+      "spinach",
+    ],
+    [
+      "garnelen-knoblauch",
+      "Knoblauch-Garnelen",
+      "Garlic shrimp",
+      "shrimp",
+      "lemon",
+    ],
+    [
+      "kabeljau-senf",
+      "Kabeljau mit Senfsauce",
+      "Cod with mustard sauce",
+      "cod",
+      "mustard",
+    ],
+    ["koettbullar", "Köttbullar", "Swedish meatballs", "beef", "cream"],
+    [
+      "frikadellen",
+      "Klassische Frikadellen",
+      "Classic meat patties",
+      "beef",
+      "bread",
+    ],
+    [
+      "zucchini-piccata",
+      "Zucchini-Piccata",
+      "Zucchini piccata",
+      "zucchini",
+      "parmesan",
+    ],
+    [
+      "auberginen-steaks",
+      "Auberginen-Steaks",
+      "Eggplant steaks",
+      "eggplant",
+      "sesame",
+    ],
+    [
+      "pilzrahm-pfanne",
+      "Pilzrahm-Pfanne",
+      "Creamy mushroom skillet",
+      "mushroom",
+      "cream",
+    ],
+    [
+      "gnocchi-ersatz",
+      "Knusprige Kartoffelwürfel mit Spinat",
+      "Crispy potatoes with spinach",
+      "potato",
+      "spinach",
+    ],
+    [
+      "bohnen-tomaten",
+      "Grüne-Bohnen-Tomaten-Pfanne",
+      "Green bean tomato skillet",
+      "green-bean",
+      "tomato",
+    ],
+    [
+      "brokkoli-nudel",
+      "Brokkoli-Nudelpfanne",
+      "Broccoli pasta skillet",
+      "penne",
+      "broccoli",
+    ],
+    [
+      "couscous-pfanne",
+      "Couscous-Pfanne mit Kichererbsen",
+      "Couscous chickpea skillet",
+      "couscous",
+      "chickpea",
+    ],
+    [
+      "suesskartoffel-hash",
+      "Süßkartoffel-Hash",
+      "Sweet potato hash",
+      "sweet-potato",
+      "bell-pepper",
+    ],
+  ],
+};
+
+const lunchTechniques = {
+  oven: [
+    "oven-layer-and-bake",
+    "oven-fill-and-roast",
+    "oven-gratinate",
+    "oven-en-papillote",
+    "oven-crust-and-bake",
+    "oven-slow-roast",
+    "oven-set-custard",
+    "oven-braise-covered",
+    "oven-parbake-and-finish",
+    "oven-high-heat-crisp",
+  ],
+  pot: [
+    "pot-simmer",
+    "pot-braise",
+    "pot-risotto",
+    "pot-poach",
+    "pot-steam",
+    "pot-reduce",
+    "pot-blanch-and-bind",
+    "pot-one-pot-layer",
+    "pot-slow-stew",
+    "pot-emulsify",
+  ],
+  pan: [
+    "pan-sear",
+    "pan-saute",
+    "pan-stir-fry",
+    "pan-shallow-fry",
+    "pan-set-egg",
+    "pan-braise",
+    "pan-reduce-sauce",
+    "pan-toast-and-fold",
+    "pan-crisp",
+    "pan-steam-fry",
+  ],
+};
+
+const techniqueDirections = {
+  "oven-layer-and-bake": text(
+    "Die Bestandteile abwechselnd mit der aromatischen Flüssigkeit einschichten, damit klar getrennte, saftige Lagen entstehen.",
+    "Layer the components alternately with the aromatic liquid so that distinct, moist layers form.",
+  ),
+  "oven-fill-and-roast": text(
+    "Die größere Zutat aushöhlen, die würzige Füllung locker einbringen und aufrecht in die Form setzen.",
+    "Hollow out the larger ingredient, spoon in the seasoned filling loosely, and place it upright in the dish.",
+  ),
+  "oven-gratinate": text(
+    "Alles flach in der Form verteilen und die Oberfläche so vorbereiten, dass sie beim Backen gleichmäßig gratiniert.",
+    "Spread everything evenly in the dish and prepare the surface so that it gratinates uniformly.",
+  ),
+  "oven-en-papillote": text(
+    "Die portionierten Zutaten auf Backpapier setzen, dicht zu Päckchen verschließen und im eigenen Dampf garen.",
+    "Place individual portions on baking paper, seal tightly into parcels, and cook them in their own steam.",
+  ),
+  "oven-crust-and-bake": text(
+    "Eine würzige Kruste herstellen, gleichmäßig andrücken und backen, bis sie trocken und goldbraun ist.",
+    "Make a seasoned crust, press it on evenly, and bake until dry and golden.",
+  ),
+  "oven-slow-roast": text(
+    "Die Zutaten kompakt in den Bräter setzen und bei gleichmäßiger Hitze langsam bis zum saftigen Kern rösten.",
+    "Arrange the ingredients snugly in the roasting dish and roast steadily until the centre remains juicy.",
+  ),
+  "oven-set-custard": text(
+    "Die vorbereiteten Zutaten mit der Eiermasse umgießen und ohne starke Bräunung sanft stocken lassen.",
+    "Pour the egg mixture over the prepared ingredients and let it set gently without excessive browning.",
+  ),
+  "oven-braise-covered": text(
+    "Die Form zunächst dicht abdecken, im entstehenden Dampf schmoren und erst zum Bräunen wieder öffnen.",
+    "Cover the dish tightly at first, braise in the trapped steam, and uncover only for browning.",
+  ),
+  "oven-parbake-and-finish": text(
+    "Die tragende Komponente zuerst vorgaren, anschließend belegen und für eine saftige Mitte fertigbacken.",
+    "Part-bake the supporting component first, add the topping, and finish baking for a moist centre.",
+  ),
+  "oven-high-heat-crisp": text(
+    "Mit Abstand auf dem heißen Blech verteilen, einmal wenden und bei hoher Hitze rundum knusprig rösten.",
+    "Space everything out on the hot tray, turn once, and roast at high heat until crisp all over.",
+  ),
+  "pot-simmer": text(
+    "Knapp unter dem Siedepunkt sanft köcheln, damit die Zutaten ihre Form behalten und Aromen austauschen.",
+    "Keep at a gentle simmer just below boiling so the ingredients hold their shape while exchanging flavours.",
+  ),
+  "pot-braise": text(
+    "Nach dem Anrösten nur teilweise mit Flüssigkeit bedecken und bei kleiner Hitze langsam weich schmoren.",
+    "After browning, cover only partly with liquid and braise slowly over low heat until tender.",
+  ),
+  "pot-risotto": text(
+    "Die Brühe portionsweise einarbeiten und regelmäßig rühren, bis die Körner cremig gebunden und bissfest sind.",
+    "Work in the broth a little at a time, stirring regularly until the grains are creamy yet retain bite.",
+  ),
+  "pot-poach": text(
+    "In nur leicht bewegter Flüssigkeit schonend gar ziehen lassen, ohne das Gargut sprudelnd zu kochen.",
+    "Poach gently in barely moving liquid without allowing the food to boil vigorously.",
+  ),
+  "pot-steam": text(
+    "Über wenig Flüssigkeit zugedeckt dämpfen, sodass Dampf und austretende Säfte das Gericht garen.",
+    "Steam covered over a small amount of liquid so that steam and released juices cook the dish.",
+  ),
+  "pot-reduce": text(
+    "Offen einkochen, bis die Flüssigkeit die Zutaten glänzend umhüllt und der Geschmack konzentriert ist.",
+    "Reduce uncovered until the liquid coats the ingredients glossily and the flavour is concentrated.",
+  ),
+  "pot-blanch-and-bind": text(
+    "Die festen Zutaten kurz blanchieren, abgießen und erst anschließend in der Sauce fertig binden.",
+    "Briefly blanch the firm ingredients, drain, and only then finish binding them in the sauce.",
+  ),
+  "pot-one-pot-layer": text(
+    "Die Zutaten nach Garzeit gestaffelt in einen Topf geben, damit am Ende alles gleichzeitig fertig ist.",
+    "Add the ingredients to one pot in order of cooking time so everything finishes together.",
+  ),
+  "pot-slow-stew": text(
+    "Bei sehr kleiner Hitze lange schmoren und nur gelegentlich bewegen, bis eine sämige Konsistenz entsteht.",
+    "Stew slowly over very low heat, stirring only occasionally, until the consistency becomes rich.",
+  ),
+  "pot-emulsify": text(
+    "Zum Schluss Fett und Kochflüssigkeit kräftig verbinden, bis eine glatte, stabile Sauce entsteht.",
+    "Finish by vigorously combining fat and cooking liquid until a smooth, stable sauce forms.",
+  ),
+  "pan-sear": text(
+    "Auf der ersten Seite ungestört kräftig anbraten, erst bei guter Kruste wenden und dann fertig garen.",
+    "Sear undisturbed on the first side, turn only once a good crust has formed, then finish cooking.",
+  ),
+  "pan-saute": text(
+    "In wenig Fett unter häufigem Schwenken kurz sautieren, damit Farbe und Biss erhalten bleiben.",
+    "Sauté briefly in a little fat, tossing often so colour and bite are retained.",
+  ),
+  "pan-stir-fry": text(
+    "Bei sehr hoher Hitze in kleinen Portionen wokken und die Zutaten nach ihrer Garzeit zufügen.",
+    "Stir-fry in small batches over very high heat, adding ingredients according to their cooking time.",
+  ),
+  "pan-shallow-fry": text(
+    "In einer flachen Ölschicht portionsweise goldbraun ausbacken und anschließend gründlich abtropfen lassen.",
+    "Shallow-fry in batches until golden, then drain thoroughly.",
+  ),
+  "pan-set-egg": text(
+    "Die Eiermasse bei mittlerer Hitze langsam stocken lassen und die Pfanne dabei nur behutsam bewegen.",
+    "Let the egg mixture set slowly over medium heat, moving the pan only gently.",
+  ),
+  "pan-braise": text(
+    "Nach dem Anbraten wenig Flüssigkeit zugeben, abdecken und in der Pfanne sanft fertig schmoren.",
+    "After searing, add a little liquid, cover, and finish with a gentle pan braise.",
+  ),
+  "pan-reduce-sauce": text(
+    "Den Bratensatz lösen und die Sauce offen reduzieren, bis sie die Zutaten dünn überzieht.",
+    "Release the browned bits and reduce the sauce uncovered until it lightly coats the ingredients.",
+  ),
+  "pan-toast-and-fold": text(
+    "Die trockenen Bestandteile zunächst anrösten, dann die übrigen Zutaten locker unterheben.",
+    "Toast the dry components first, then fold in the remaining ingredients loosely.",
+  ),
+  "pan-crisp": text(
+    "Flach in die Pfanne drücken, ohne Bewegen knusprig werden lassen und in großen Stücken wenden.",
+    "Press flat into the pan, leave undisturbed until crisp, and turn in large pieces.",
+  ),
+  "pan-steam-fry": text(
+    "Zuerst mit wenig Flüssigkeit zugedeckt dämpfen, dann den Deckel entfernen und trocken anbraten.",
+    "Steam covered with a little liquid first, then remove the lid and fry until dry.",
+  ),
+};
+
+function conceptAmount(ingredientId, position) {
+  if (ingredientId === "egg") return amount(ingredientId, 4, "Stück", "pieces");
+  if (ingredientId === "tortilla")
+    return amount(ingredientId, 8, "Stück", "pieces");
+  if (["lemon", "onion"].includes(ingredientId))
+    return amount(ingredientId, position === 0 ? 2 : 1, "Stück", "pieces");
+  if (["rosemary", "parsley", "basil"].includes(ingredientId))
+    return amount(ingredientId, 2, "EL", "tbsp");
+  if (["mustard", "sesame", "cornstarch"].includes(ingredientId))
+    return amount(ingredientId, 2, "EL", "tbsp");
+  if (ingredientId === "peanut") return amount(ingredientId, 80, "g", "g");
+  if (
+    ["bread", "parmesan", "cheddar", "gouda", "feta", "mozzarella"].includes(
+      ingredientId,
+    )
+  )
+    return amount(ingredientId, 140, "g", "g");
+  if (["cream", "coconut-milk"].includes(ingredientId))
+    return amount(ingredientId, 250, "ml", "ml");
+  return amount(ingredientId, position === 0 ? 420 : 280, "g", "g");
+}
+
+function lunchSteps(method, primary, secondary, technique) {
+  const safetyDe = `${cookingGuidance(primary, "de")}${cookingGuidance(secondary, "de")}`;
+  const safetyEn = `${cookingGuidance(primary, "en")}${cookingGuidance(secondary, "en")}`;
+  const first = text(
+    `${name(primary, "de")} und ${name(secondary, "de")} passend zur jeweiligen Form vorbereiten; Zwiebel und Knoblauch fein schneiden.`,
+    `Prepare the ${name(primary, "en")} and ${name(secondary, "en")} for the dish; finely chop the onion and garlic.`,
+  );
+  if (method === "oven") {
+    return [
+      first,
+      text(
+        `Den Backofen auf 190 °C Ober-/Unterhitze vorheizen und die Form dünn mit Olivenöl ausstreichen.`,
+        `Preheat the oven to 190°C/375°F conventional and lightly oil the baking dish.`,
+      ),
+      text(
+        `Zwiebel und Knoblauch anschwitzen, mit Brühe ablöschen und die aromatische Grundlage sorgfältig abschmecken.`,
+        `Soften the onion and garlic, deglaze with broth, and season the aromatic base carefully.`,
+      ),
+      text(
+        `${techniqueDirections[technique].de}${safetyDe}`,
+        `${techniqueDirections[technique].en}${safetyEn}`,
+      ),
+      text(
+        `Im Ofen garen, bis die Mitte heiß und die Oberfläche appetitlich gebräunt ist; vor dem Servieren fünf Minuten ruhen lassen.`,
+        `Bake until the centre is hot and the surface is nicely browned; rest for five minutes before serving.`,
+      ),
+    ];
+  }
+  if (method === "pot") {
+    return [
+      first,
+      text(
+        `Zwiebel und Knoblauch in Olivenöl glasig anschwitzen und die festen Zutaten kurz mitrösten.`,
+        `Soften the onion and garlic in olive oil, then briefly toast the firm ingredients.`,
+      ),
+      text(
+        `Mit Brühe ablöschen, ${name(primary, "de")} und ${name(secondary, "de")} zugeben und die Hitze kontrolliert reduzieren.`,
+        `Deglaze with broth, add the ${name(primary, "en")} and ${name(secondary, "en")}, and reduce the heat carefully.`,
+      ),
+      text(
+        `${techniqueDirections[technique].de}${safetyDe}`,
+        `${techniqueDirections[technique].en}${safetyEn}`,
+      ),
+      text(
+        `Die Konsistenz abschließend einstellen, kräftig abschmecken und das Gericht heiß mit frischer Petersilie servieren.`,
+        `Adjust the final consistency, season generously, and serve the dish hot with fresh parsley.`,
+      ),
+    ];
+  }
+  return [
+    first,
+    text(
+      `Eine große Pfanne gleichmäßig erhitzen, Olivenöl zugeben und die Zutaten portionsweise anbraten.`,
+      `Heat a large frying pan evenly, add olive oil, and brown the ingredients in batches.`,
+    ),
+    text(
+      `${name(primary, "de")} zuerst bis zur passenden Bräunung garen, dann ${name(secondary, "de")} und die Aromaten ergänzen.`,
+      `Cook the ${name(primary, "en")} to the appropriate colour first, then add the ${name(secondary, "en")} and aromatics.`,
+    ),
+    text(
+      `${techniqueDirections[technique].de}${safetyDe}`,
+      `${techniqueDirections[technique].en}${safetyEn}`,
+    ),
+    text(
+      `Die Pfanne vom Herd nehmen, sorgfältig abschmecken und unmittelbar mit frischer Petersilie servieren.`,
+      `Take the pan off the heat, season carefully, and serve immediately with fresh parsley.`,
+    ),
+  ];
+}
+
+for (const [method, concepts] of Object.entries(lunchConcepts)) {
+  concepts.forEach(([slug, titleDe, titleEn, primary, secondary], index) => {
+    const technique =
+      lunchTechniques[method][index % lunchTechniques[method].length];
+    const recipe = createRecipe({
+      id: `lunch-${method}-${slug}`,
+      titleDe,
+      titleEn,
+      ingredientLines: [
+        conceptAmount(primary, 0),
+        conceptAmount(secondary, 1),
+        amount("onion", 1, "Stück", "piece"),
+        amount("garlic", 2, "Zehen", "cloves"),
+        amount("olive-oil", 2, "EL", "tbsp"),
+        amount("vegetable-broth", 350, "ml", "ml"),
+        amount("paprika-spice", 1, "TL", "tsp"),
+        amount("parsley", 2, "EL", "tbsp"),
+        amount("salt", 1, "Prise", "pinch"),
+        amount("black-pepper", 1, "Prise", "pinch"),
+      ],
+      prep: 15 + (index % 6),
+      cook: 20 + (index % 10),
+      difficulty: difficultyFor(index + 21),
+      cuisine: [
+        "cuisine-european",
+        "cuisine-mediterranean",
+        "cuisine-asian",
+        "cuisine-middle-eastern",
+        "cuisine-modern",
+      ][index % 5],
+      method: `method-${method}`,
+      meal: "meal-lunch",
+      steps: lunchSteps(method, primary, secondary, technique),
+    });
+    recipe.baseRecipeId = `lunch-${method}-${slug}`;
+    recipe.techniqueSignature = technique;
+    recipes.push(recipe);
+  });
+}
+
+const familyMetadata = {
+  bowl: {
+    id: "base-bowl",
+    title: text("Bowl-Grundrezept", "Build-your-own bowl"),
+    technique: "cook-sear-assemble-bowl",
+  },
+  pasta: {
+    id: "base-pasta",
+    title: text("Pasta mit Tomatensauce", "Pasta with tomato sauce"),
+    technique: "boil-saute-reduce-pasta",
+  },
+  curry: {
+    id: "base-curry",
+    title: text("Cremiges Curry mit Reis", "Creamy curry with rice"),
+    technique: "toast-spices-simmer-curry",
+  },
+  soup: {
+    id: "base-soup",
+    title: text("Kräftige Gemüsesuppe", "Hearty vegetable soup"),
+    technique: "sweat-simmer-blend-soup",
+  },
+  tray: {
+    id: "base-tray",
+    title: text("Ofengemüse vom Blech", "Sheet-pan roasted vegetables"),
+    technique: "season-roast-turn-sheet-pan",
+  },
+  salad: {
+    id: "base-salad",
+    title: text("Sättigender Salat", "Substantial mixed salad"),
+    technique: "cook-cool-dress-salad",
+  },
+  casserole: {
+    id: "base-casserole",
+    title: text("Herzhafter Auflauf", "Hearty casserole"),
+    technique: "layer-bind-gratinate-casserole",
+  },
+  stew: {
+    id: "base-stew",
+    title: text("Herzhafter Eintopf", "Hearty stew"),
+    technique: "brown-deglaze-braise-stew",
+  },
+  cake: {
+    id: "base-cake",
+    title: text("Saftiger Rührkuchen", "Moist loaf cake"),
+    technique: "cream-fold-bake-cake",
+  },
+  muffin: {
+    id: "base-muffin",
+    title: text("Fruchtige Muffins", "Fruity muffins"),
+    technique: "mix-fold-portion-bake-muffin",
+  },
+};
+
+for (const recipe of recipes) {
+  if (recipe.baseRecipeId) continue;
+  const family = recipe.id.split("-")[0];
+  const metadata = familyMetadata[family];
+  if (!metadata) throw new Error(`Missing family metadata for ${recipe.id}`);
+  recipe.baseRecipeId = metadata.id;
+  recipe.techniqueSignature = metadata.technique;
+  recipe.variationLabel = recipe.title;
+  recipe.title = metadata.title;
+}
+
+const variationOptionsByBase = new Map();
+for (const recipe of recipes) {
+  if (!recipe.variationLabel) continue;
+  const options = variationOptionsByBase.get(recipe.baseRecipeId) ?? [];
+  if (
+    !options.some((candidate) => candidate.de === recipe.variationLabel.de) &&
+    options.length < 6
+  ) {
+    options.push(recipe.variationLabel);
+  }
+  variationOptionsByBase.set(recipe.baseRecipeId, options);
+}
+for (const recipe of recipes) {
+  const options = variationOptionsByBase.get(recipe.baseRecipeId);
+  if (options) {
+    recipe.variationOptions = options.filter(
+      (option) => option.de !== recipe.variationLabel?.de,
+    );
+  }
+}
+
 const catalog = {
-  version: 1,
+  version: 2,
   ingredients,
   facets: facetGroups,
   recipes,
@@ -1211,5 +2103,5 @@ const serializedCatalog = await format(JSON.stringify(catalog), {
 });
 await writeFile(outputPath, serializedCatalog, "utf8");
 console.log(
-  `Generated ${recipes.length} original bilingual recipes at ${outputPath}`,
+  `Generated ${recipes.length} bilingual variants across ${new Set(recipes.map(({ baseRecipeId }) => baseRecipeId)).size} base recipes at ${outputPath}`,
 );

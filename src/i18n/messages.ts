@@ -46,6 +46,8 @@ export const messages = {
     detail: {
       ingredients: "Zutaten",
       steps: "Zubereitung",
+      selectedVariation: "Passende Variante",
+      variations: "So kannst du variieren",
       matched: "Passt zu deiner Auswahl",
       facetMatch: "Gewählter Filter",
       favoriteAdd: "Als Favorit speichern",
@@ -146,6 +148,8 @@ export const messages = {
     detail: {
       ingredients: "Ingredients",
       steps: "Directions",
+      selectedVariation: "Matching variation",
+      variations: "Ways to vary it",
       matched: "Matches your selection",
       facetMatch: "Selected filter",
       favoriteAdd: "Save as favorite",

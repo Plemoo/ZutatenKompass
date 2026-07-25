@@ -39,6 +39,8 @@ const recipe = (
   totalMinutes: number,
 ): Recipe => ({
   id,
+  baseRecipeId: id,
+  techniqueSignature: `test-${id}`,
   title: { de: id, en: id },
   servings: 4,
   prepMinutes: 10,
@@ -321,5 +323,43 @@ describe("searchRecipes", () => {
     expect(repeated.matches.map((match) => match.score)).toEqual(
       once.matches.map((match) => match.score),
     );
+  });
+
+  it("returns one card per base recipe and selects an allowed concrete variant", () => {
+    const cheeseVariant = {
+      ...recipe(
+        "tray-cheese",
+        ["tomato", "cheddar", "salt"],
+        ["diet-vegetarian", "time-fast"],
+        25,
+      ),
+      baseRecipeId: "base-tray",
+      title: { de: "Ofengemüse vom Blech", en: "Sheet-pan vegetables" },
+    };
+    const chickenVariant = {
+      ...recipe(
+        "tray-chicken",
+        ["tomato", "chicken", "salt"],
+        ["diet-omnivore", "time-fast"],
+        30,
+      ),
+      baseRecipeId: "base-tray",
+      title: { de: "Ofengemüse vom Blech", en: "Sheet-pan vegetables" },
+    };
+    const groupedCatalog = {
+      ...catalog,
+      recipes: [cheeseVariant, chickenVariant],
+    };
+
+    const result = searchRecipes(
+      query({
+        includeIngredientIds: ["tomato"],
+        excludeIngredientIds: ["cheese"],
+      }),
+      groupedCatalog,
+    );
+
+    expect(result.total).toBe(1);
+    expect(result.matches[0]?.recipe.id).toBe("tray-chicken");
   });
 });

@@ -101,7 +101,9 @@ sequenceDiagram
 Quellen sind originär erstellte, versionierte Projektdaten. Ein Build-/Validierungsschritt
 prüft mindestens:
 
-- 1.200 oder mehr Rezepte
+- 100 oder mehr eigenständige Grundrezepte mit 1.290 oder mehr konkreten Varianten
+- stabile `baseRecipeId` und `techniqueSignature` zur Trennung von Grundgericht und Austauschvariante
+- höchstens ein Suchtreffer je `baseRecipeId`; der Score der besten zulässigen Variante entscheidet
 - Eindeutigkeit und Referenzintegrität
 - vollständige DE-/EN-Felder
 - Zutatenhierarchie ohne Zyklen und Alias-Kollisionen
@@ -147,7 +149,7 @@ kanonischen IDs bleiben bestehen und erhalten nur neue Labels.
 
 ## Performancebudgets
 
-- Suche und Filter sollen bei 1.200+ Rezepten auf einem typischen Android-Gerät ohne wahrnehmbares
+- Suche und Filter sollen bei 1.290+ Varianten auf einem typischen Android-Gerät ohne wahrnehmbares
   Blockieren reagieren; als Testziel gelten 100 ms für reine Domänenlogik im repräsentativen
   Katalog auf CI-Hardware, nicht als Geräte-SLA.
 - Ergebnislisten virtualisieren Einträge.
