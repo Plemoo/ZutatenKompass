@@ -1,5 +1,4 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Image } from "expo-image";
 import { Share, Pressable, StyleSheet, View } from "react-native";
 import type { Recipe, RecipeMatch } from "../../domain";
 import { useI18n } from "../../i18n";
@@ -8,8 +7,7 @@ import { Button } from "../../ui/Button";
 import { Typography } from "../../ui/Typography";
 import { colors, radius, spacing } from "../../ui/theme";
 import { facetLabel, ingredientLabel } from "./domainAdapter";
-
-const fallbackIcon = require("../../../assets/icon.png");
+import { RecipeIcon } from "./RecipeIcon";
 
 export function RecipeDetail({
   recipe,
@@ -43,12 +41,7 @@ export function RecipeDetail({
       {!compact && (
         <>
           <View style={styles.hero}>
-            <Image
-              accessibilityLabel={t.common.fallbackImage}
-              contentFit="contain"
-              source={fallbackIcon}
-              style={styles.heroImage}
-            />
+            <RecipeIcon recipe={recipe} size="hero" />
           </View>
           <View style={styles.actions}>
             <Pressable
@@ -164,7 +157,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
     backgroundColor: colors.saffronSoft,
   },
-  heroImage: { width: 128, height: 128 },
   actions: { flexDirection: "row", alignItems: "center", gap: spacing.md },
   iconButton: {
     width: 54,

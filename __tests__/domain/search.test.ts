@@ -41,6 +41,7 @@ const recipe = (
   id,
   baseRecipeId: id,
   techniqueSignature: `test-${id}`,
+  visualKind: "unknown",
   title: { de: id, en: id },
   servings: 4,
   prepMinutes: 10,

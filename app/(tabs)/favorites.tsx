@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
 import { RecipeDetail } from "../../src/features/recipes/RecipeDetail";
+import { RecipeIcon } from "../../src/features/recipes/RecipeIcon";
 import { getRecipe } from "../../src/features/recipes/domainAdapter";
 import { useI18n } from "../../src/i18n";
 import { useFavorites } from "../../src/state";
@@ -53,11 +54,19 @@ export default function FavoritesScreen() {
                   onPress={() => setExpandedId(open ? null : id)}
                   style={styles.itemHeader}
                 >
-                  <MaterialCommunityIcons
-                    color={colors.tomato}
-                    name="heart"
-                    size={22}
-                  />
+                  {recipe ? (
+                    <RecipeIcon
+                      accessible={false}
+                      recipe={recipe}
+                      size="mini"
+                    />
+                  ) : (
+                    <MaterialCommunityIcons
+                      color={colors.tomato}
+                      name="heart"
+                      size={22}
+                    />
+                  )}
                   <Typography kind="heading" style={styles.itemTitle}>
                     {recipe?.title[locale] ?? t.favorites.missing}
                   </Typography>

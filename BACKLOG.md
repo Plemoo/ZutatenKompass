@@ -92,7 +92,7 @@ versionieren, damit Änderungen nachvollziehbar und sicher gespeichert sind.
 
 - Icon, Android Adaptive Icon, Monochrom-Icon und Splash-Asset sind vorhanden.
 - Das Motiv bleibt in kleinen Größen verständlich und enthält keinen fremden Markenbestandteil.
-- Das Icon dient als lokaler Bildfallback.
+- Das App-Icon bleibt dem Launcher und der Markenwiedererkennung vorbehalten.
 
 **Abhängigkeiten:** ZK-010, ZK-011.
 
@@ -356,12 +356,16 @@ Zutatenvarianten desselben Grundrezepts.
 
 ### ZK-051 – Ergebnisliste (`P0`, Erledigt)
 
-**Story:** Als Nutzer möchte ich Rezepttitel und ein repräsentatives, verlässliches Bild sehen.
+**Story:** Als Nutzer möchte ich Rezepttitel und ein wiedererkennbares Offline-Icon sehen.
 
 **Akzeptanzkriterien**
 
-- Jede Karte zeigt Titel und lokales Bild beziehungsweise App-Icon-Fallback.
+- Jede Karte zeigt Titel und ein lokales Icon für den stabilen `visualKind`.
+- Farbe und Primärsymbol kennzeichnen den Gerichtstyp; ein kleiner Badge kennzeichnet
+  eine prägende Zutatenkategorie.
+- Karten, Favoriten und Detailansicht verwenden für dasselbe Grundrezept dasselbe Icon.
 - Kein Remote-Ladevorgang und kein kaputter Bildzustand ist für V1 erforderlich.
+- TalkBack liest den lokalisierten Gerichtstyp, aber keine dekorativen Einzelglyphen.
 - Karten öffnen eindeutig die stabile Rezept-ID.
 - Listen sind performant und zugänglich.
 

@@ -1,36 +1,31 @@
-import { Image } from "expo-image";
 import { Pressable, StyleSheet, View } from "react-native";
+import type { Recipe } from "../../domain";
 import { useI18n } from "../../i18n";
 import { Typography } from "../../ui/Typography";
 import { colors, radius, spacing } from "../../ui/theme";
-
-const fallbackIcon = require("../../../assets/icon.png");
+import { getRecipeIconPresentation, RecipeIcon } from "./RecipeIcon";
 
 export function RecipeCard({
-  id,
-  title,
+  recipe,
   onPress,
 }: {
-  id: string;
-  title: string;
+  recipe: Recipe;
   onPress: (id: string) => void;
 }) {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
+  const title = recipe.title[locale];
+  const presentation = getRecipeIconPresentation(recipe);
   return (
     <Pressable
-      accessibilityHint={title}
+      accessibilityHint={t.common.openRecipe}
+      accessibilityLabel={`${title}, ${t.recipeIcon[presentation.kind]}`}
       accessibilityRole="button"
-      onPress={() => onPress(id)}
+      onPress={() => onPress(recipe.id)}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
-      testID={`recipe-card-${id}`}
+      testID={`recipe-card-${recipe.id}`}
     >
       <View style={styles.imageWrap}>
-        <Image
-          accessibilityLabel={t.common.fallbackImage}
-          contentFit="contain"
-          source={fallbackIcon}
-          style={styles.image}
-        />
+        <RecipeIcon accessible={false} recipe={recipe} />
       </View>
       <Typography kind="heading" numberOfLines={2} style={styles.title}>
         {title}
@@ -51,13 +46,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   imageWrap: {
-    width: 88,
+    width: 92,
     alignSelf: "stretch",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.saffronSoft,
+    backgroundColor: colors.canvas,
   },
-  image: { width: 58, height: 58 },
   title: { flex: 1, padding: spacing.lg },
   pressed: { opacity: 0.74, transform: [{ scale: 0.99 }] },
 });

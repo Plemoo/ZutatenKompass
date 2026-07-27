@@ -22,7 +22,7 @@ an einem Default benötigen ein ADR oder eine dokumentierte Produktentscheidung.
 | Facetten           | Ernährung, Mahlzeit/Gang, Küche/Region, Zeit, Schwierigkeit, Zubereitungsart     |
 | Facettenlogik      | OR innerhalb einer Gruppe, AND zwischen belegten Gruppen                         |
 | Nicht trivial      | redaktionell geprüft, mindestens 3 Nicht-Basiszutaten und 3 echte Schritte       |
-| Bilder V1          | originäre, gebündelte Assets; ansonsten lokales App-Icon                         |
+| Rezeptvisuals V1   | gebündelte Icons nach stabilem `visualKind`; vollständig offline                 |
 | Remote-Bilder      | erst später und nur mit vollständigem Lizenzmanifest                             |
 | Sharing V1         | OS Share Sheet mit Titel/Text und Custom-Scheme-Link über stabile Rezept-ID      |
 | Link-Fallback      | ohne installierte App kein Web-/Store-Fallback in V1                             |

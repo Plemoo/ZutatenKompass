@@ -101,6 +101,20 @@ for (const id of findDuplicates(recipeIds))
 const baseRecipeIds = new Set(
   catalog.recipes.map((recipe) => recipe.baseRecipeId),
 );
+const validVisualKinds = new Set([
+  "bowl",
+  "cake",
+  "casserole",
+  "curry",
+  "muffin",
+  "oven",
+  "pan",
+  "pasta",
+  "pot",
+  "salad",
+  "soup",
+  "stew",
+]);
 if (baseRecipeIds.size < 100) {
   errors.push("catalog must contain at least 100 distinct base recipes");
 }
@@ -154,6 +168,7 @@ for (const locale of ["de", "en"]) {
   }
 }
 
+const visualKindByBase = new Map();
 for (const recipe of catalog.recipes) {
   if (
     typeof recipe.baseRecipeId !== "string" ||
@@ -167,6 +182,16 @@ for (const recipe of catalog.recipes) {
   ) {
     errors.push(`recipe ${recipe.id} has no techniqueSignature`);
   }
+  if (!validVisualKinds.has(recipe.visualKind)) {
+    errors.push(`recipe ${recipe.id} has invalid visualKind`);
+  }
+  const previousVisualKind = visualKindByBase.get(recipe.baseRecipeId);
+  if (previousVisualKind && previousVisualKind !== recipe.visualKind) {
+    errors.push(
+      `base recipe ${recipe.baseRecipeId} has inconsistent visualKind`,
+    );
+  }
+  visualKindByBase.set(recipe.baseRecipeId, recipe.visualKind);
   requireLocalized(recipe.title, `recipe ${recipe.id}.title`);
   if (recipe.variationLabel) {
     requireLocalized(

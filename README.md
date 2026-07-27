@@ -16,7 +16,8 @@ Rezepte aus einem vollständig mitgelieferten Katalog.
 - Facetten für Ernährung, Mahlzeit/Gang, Küche/Region, Zeit, Schwierigkeit und Zubereitungsart
 - Ergebnisranking nach möglichst wenigen zusätzlich benötigten Zutaten
 - Favoriten, Sprachwahl per 🇩🇪-/🇬🇧-Flagge, Detailansicht und Teilen über das Betriebssystem
-- ausschließlich lokale Bild-Assets in V1; das App-Icon ist der verlässliche Fallback
+- vollständig lokale, farbcodierte Rezepticons für Gerichtstyp und Hauptzutat
+- keine Netzwerk- oder Remote-Bilder für Rezeptkarten und Detailansichten
 
 Wichtig: Zutaten-Ausschlüsse sind Komfortfilter und keine medizinisch belastbare
 Allergieprüfung. Der Katalog enthält keine Garantie zu Allergenen oder Spuren.

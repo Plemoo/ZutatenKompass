@@ -64,7 +64,8 @@ Die Domäne hat keine React-, Expo-, SQLite- oder Netzwerkabhängigkeit.
 - Ein Katalogadapter lädt validierte, gebündelte Daten.
 - Ein Persistenzadapter verwaltet Favoriten, Sprache und Schema-/Katalogversion.
 - Ein Plattformadapter kapselt Share Sheet und Linkerzeugung.
-- Assetauflösung liefert stets einen lokalen Fallback.
+- Der bibliotheksneutrale Katalogwert `visualKind` wird zentral auf ein lokal gebündeltes
+  Rezepticon, eine kontrastreiche Farbwelt und einen Zutaten-Badge abgebildet.
 
 ## Datenfluss der Suche
 
@@ -110,7 +111,7 @@ prüft mindestens:
 - plausible Wertebereiche
 - Facettenwerte aus kontrolliertem Vokabular
 - mindestens drei Nicht-Basiszutaten und drei echte Schritte
-- bekannte lokale Bildreferenz oder Icon-Fallback
+- gültiger, innerhalb einer `baseRecipeId` konsistenter `visualKind`
 
 Ein Katalogupdate darf bestehende stabile IDs nicht unbemerkt wiederverwenden.
 

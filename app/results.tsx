@@ -60,11 +60,10 @@ export default function ResultsScreen() {
         }
         renderItem={({ item: { recipe } }) => (
           <RecipeCard
-            id={recipe.id}
             onPress={(id) =>
               router.push({ pathname: "/recipe/[id]", params: { id } })
             }
-            title={recipe.title[locale]}
+            recipe={recipe}
           />
         )}
       />

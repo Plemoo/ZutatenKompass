@@ -2001,6 +2001,7 @@ for (const [method, concepts] of Object.entries(lunchConcepts)) {
     });
     recipe.baseRecipeId = `lunch-${method}-${slug}`;
     recipe.techniqueSignature = technique;
+    recipe.visualKind = method;
     recipes.push(recipe);
   });
 }
@@ -2010,51 +2011,61 @@ const familyMetadata = {
     id: "base-bowl",
     title: text("Bowl-Grundrezept", "Build-your-own bowl"),
     technique: "cook-sear-assemble-bowl",
+    visualKind: "bowl",
   },
   pasta: {
     id: "base-pasta",
     title: text("Pasta mit Tomatensauce", "Pasta with tomato sauce"),
     technique: "boil-saute-reduce-pasta",
+    visualKind: "pasta",
   },
   curry: {
     id: "base-curry",
     title: text("Cremiges Curry mit Reis", "Creamy curry with rice"),
     technique: "toast-spices-simmer-curry",
+    visualKind: "curry",
   },
   soup: {
     id: "base-soup",
     title: text("Kräftige Gemüsesuppe", "Hearty vegetable soup"),
     technique: "sweat-simmer-blend-soup",
+    visualKind: "soup",
   },
   tray: {
     id: "base-tray",
     title: text("Ofengemüse vom Blech", "Sheet-pan roasted vegetables"),
     technique: "season-roast-turn-sheet-pan",
+    visualKind: "oven",
   },
   salad: {
     id: "base-salad",
     title: text("Sättigender Salat", "Substantial mixed salad"),
     technique: "cook-cool-dress-salad",
+    visualKind: "salad",
   },
   casserole: {
     id: "base-casserole",
     title: text("Herzhafter Auflauf", "Hearty casserole"),
     technique: "layer-bind-gratinate-casserole",
+    visualKind: "casserole",
   },
   stew: {
     id: "base-stew",
     title: text("Herzhafter Eintopf", "Hearty stew"),
     technique: "brown-deglaze-braise-stew",
+    visualKind: "stew",
   },
   cake: {
     id: "base-cake",
     title: text("Saftiger Rührkuchen", "Moist loaf cake"),
     technique: "cream-fold-bake-cake",
+    visualKind: "cake",
   },
   muffin: {
     id: "base-muffin",
     title: text("Fruchtige Muffins", "Fruity muffins"),
     technique: "mix-fold-portion-bake-muffin",
+    visualKind: "muffin",
   },
 };
 
@@ -2065,6 +2076,7 @@ for (const recipe of recipes) {
   if (!metadata) throw new Error(`Missing family metadata for ${recipe.id}`);
   recipe.baseRecipeId = metadata.id;
   recipe.techniqueSignature = metadata.technique;
+  recipe.visualKind = metadata.visualKind;
   recipe.variationLabel = recipe.title;
   recipe.title = metadata.title;
 }
@@ -2091,7 +2103,7 @@ for (const recipe of recipes) {
 }
 
 const catalog = {
-  version: 2,
+  version: 3,
   ingredients,
   facets: facetGroups,
   recipes,

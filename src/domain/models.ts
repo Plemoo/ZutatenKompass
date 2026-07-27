@@ -4,6 +4,21 @@ export type LocalizedText = Readonly<Record<Locale, string>>;
 
 export type Difficulty = "easy" | "medium" | "hard";
 
+export type RecipeVisualKind =
+  | "bowl"
+  | "cake"
+  | "casserole"
+  | "curry"
+  | "muffin"
+  | "oven"
+  | "pan"
+  | "pasta"
+  | "pot"
+  | "salad"
+  | "soup"
+  | "stew"
+  | "unknown";
+
 export interface IngredientConcept {
   readonly id: string;
   readonly name: LocalizedText;
@@ -23,6 +38,7 @@ export interface Recipe {
   readonly id: string;
   readonly baseRecipeId: string;
   readonly techniqueSignature: string;
+  readonly visualKind: RecipeVisualKind;
   readonly title: LocalizedText;
   readonly variationLabel?: LocalizedText;
   readonly variationOptions?: readonly LocalizedText[];

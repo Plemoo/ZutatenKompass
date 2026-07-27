@@ -80,7 +80,8 @@ Die Validierung muss mit Fehlercode fehlschlagen bei:
 - Taxonomiezyklus, verwaistem Elternknoten oder Alias-Kollision
 - fehlenden/ungültigen Mengen, Portionen, Zeiten oder Schwierigkeitswerten
 - weniger als drei Nicht-Basiszutaten oder drei echten Schritten
-- nicht inventarisierter Bildreferenz
+- unbekanntem oder innerhalb eines Grundrezepts inkonsistentem `visualKind`
+- fehlendem lokalen Icon-Mapping für einen bekannten Gerichtstyp
 
 Der Erfolgsreport enthält Anzahl Rezepte, Sprachen, Küchen, Ernährungsformen,
 Facettenabdeckung und Warnungen. Zufallsgenerierung muss mit festem Seed laufen oder vermieden
