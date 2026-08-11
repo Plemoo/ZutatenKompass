@@ -785,6 +785,14 @@ addFamily(
           `Currypulver und ${name(protein, "de")} zufügen, mit Kokosmilch ablöschen und vollständig garen.`,
           `Add curry powder and ${name(protein, "en")}, pour in coconut milk, and cook through.`,
         ),
+        ...(criticalProteins.has(protein)
+          ? [
+              text(
+                cookingGuidance(protein, "de").trim(),
+                cookingGuidance(protein, "en").trim(),
+              ),
+            ]
+          : []),
         text(
           `Das Curry mit Limettensaft abschmecken und zusammen mit dem Reis anrichten.`,
           `Season the curry with lime juice and serve it with the rice.`,
@@ -907,6 +915,14 @@ addFamily(
           `Das Gemüse vorbacken, dann ${name(protein, "de")} ergänzen und alles vollständig garen.`,
           `Part-roast the vegetables, then add the ${name(protein, "en")} and cook everything through.`,
         ),
+        ...(criticalProteins.has(protein)
+          ? [
+              text(
+                cookingGuidance(protein, "de").trim(),
+                cookingGuidance(protein, "en").trim(),
+              ),
+            ]
+          : []),
         text(
           `Mit Zitronensaft abrunden, kurz ruhen lassen und direkt vom Blech servieren.`,
           `Finish with lemon juice, let it rest briefly, and serve straight from the tray.`,
@@ -1214,7 +1230,9 @@ addFamily(
       difficulty: difficultyFor(index + 18),
       cuisine: ["cuisine-modern", "cuisine-american"][index % 2],
       method: "method-baking",
-      meal: ["meal-breakfast", "meal-snack", "meal-breakfast", "meal-dessert"][index % 4],
+      meal: ["meal-breakfast", "meal-snack", "meal-breakfast", "meal-dessert"][
+        index % 4
+      ],
       steps: [
         text(
           `Den Backofen auf 180 °C Ober-/Unterhitze vorheizen und ein Muffinblech mit Papierförmchen auslegen.`,
