@@ -1,0 +1,22 @@
+Epic: Als User möchte ich eine App haben, womit ich Rezepte aufgelistet bekomme je nachdem welche Zutaten ich in der App eingebe. Durch weitere Filtermöglichkeiten kann ich die Rezeptvorschläge weiter eingrenzen.
+Story: Als User möchte ich einen sprechenden Namen für die App haben, damit ich im App Store auf die individuelle FUnktionalität direkt aufmerksam gemacht werde
+Epic: Als User möchte ich in der App ein userfreundliches Frontend haben, womit ich mit sehr wenigen und intuitiven Aktionen direkt zu meinem Ziel gelange und gleichzeitig ein individuelles Usererlebnis erfahre
+Story: Als Entwickler möchte ich dass die App für die Sprachen Deutsch und Englisch implementiert ist, auch passend auf die Daten. Im Frontend soll der User die Sprachen selektieren können
+Story: Als User möchte ich auf der Startseite nur eine kurzen intuitiven Erklärung oder ein erklärendes Bild/Icon wie die App funktionieren soll haben und ein Textfeld, wo der User seine zutaten eingeben kann. Es sollen beliebig viele zutaten eingegeben werden.
+Story: Als User möchte ich ein direktes Feedback, sobald das aktive Suchfeld verlassen wird, ob die eingegebene Zutat im System gefunden wurde, falls nicht sollen Vorschläge in Form von "Meinten Sie XY" gemacht werden. Beispielsweise wenn eine Zutat falsch beschrieben wurde.
+Story: Als User möchte ich eine beliebige Zutat eingeben, die in einem Rezept aufgeführt ist und bekomme dann alle in der Datenbasis liegende Rezepte haben (Oder gibt es eine legal/dsgvo konforme möglichkeit diese Rezepte aus dem Internet zu laden?)
+Story: Als User möchte ich optional auch Zutaten eingeben können, die auf keinen Fall in meinem Rezept enthalten sein sollen
+Story: Als USer möchte ich die App auch ohne Internet bedienen können
+Story: Als User möchte ich zusätzlich zu dem Zutaten Suchfeld einen Facettenfilter optional auswählen können, wo ich die Rezepte weiter eingränzen kann ich sinnvolle Unterrubriken, die sich wieder in weiter granularere Unterrubriken unterteilen
+Story: Als User möchte ich in der Seite wo mir meine Rezepte aufgelistet werden, die gleichen Filteroptionen und Zutateneingaben haben wie sie auf der Startseite existieren
+Story: Als User möchte ich nur die Titel der Rezepte angezeigt bekommen und mit einem legalen/nicht abmahnbaren/zugreifbaren/repräsentativem Bild aus dem Internet. Existiert kein Bild dafür, oder gibt es keinen Internetzugang, nimm das Icon der App
+Story: Als User möchte ich bei der Selektion des Rezeptes auf die Detail Seite des Rezeptes weitergeleitet werden, wo alle Zutaten gelistet sind und danach die Zubereitung beschrieben ist.
+Story: Als Entwickelr möchte ich dass die App in einem privaten GitHub Repository existiert und über expo koordiniert wird. Verwende pnpm als Paketmanager und node als Entwicklungsumgebung
+Story: Als User möchte ich ein modernes Farbdesign, das an leckeres Essen erinnert. Eventuell geben hier die Farben von HelloFresh eine Idee
+Story: Als User möchte ich für die App ein sprechendes App Icon haben, worauf ich direkt die Idee der App erkenne
+Story: Als User möchte ich meine Lieblingsrezepte speichern können und schnell zugreifbar haben. Es soll nur der Rezeptname angezeigt werden und bei bedarf kann dann das ganze Rezept aufgeklappt werden
+Story: Als User möchte ich die Rezepte über whatsapp oder E-Mail mit anderen Teilen können, sodass sie in der App dann das gleiche Rezept sehen
+Story: Als User möchte ich (sofern legal/dsgvo konform und nicht abmahnbar) in der Detailansicht eines Rezepts ein Bild des Zubereiteten Rezepts sehen, das aus dem Internet geladen wird und nicht lokal vorliegt.
+Story: Als User möchte ich in der Detail Seite die getroffenen Zutaten/Filteroptionen highlighten, sodass der User direkt sieht welche Relevanz seine Auswahl hat
+Story: Als User möchte ich nur Rezepte sehen, die nicht selbstverständlich sind. Rezepte wie Haferschleim oder Spiegelei sind zu simpel um sie aufzuführen
+Story: Als User möchte bei der Suche von Rezepten auch abstrakte bzw generische Zutatennamen eingeben. Ich möchte beispielsweise Käse eingeben können und nicht Cheddar eingeben müssen um auch Rezepte zu finden die Cheddar enthalten

@@ -387,6 +387,7 @@ const facetGroups = [
       ["meal-lunch", "Mittagessen", "Lunch", "meal-main"],
       ["meal-dinner", "Abendessen", "Dinner", "meal-main"],
       ["meal-breakfast", "Frühstück", "Breakfast"],
+      ["meal-snack", "Snack und Kleinigkeit", "Snack and light bite"],
       ["meal-dessert", "Dessert und Gebäck", "Dessert and baking"],
     ],
   },
@@ -410,9 +411,26 @@ const facetGroups = [
         "cuisine-european",
       ],
       ["cuisine-asian", "Asiatisch", "Asian"],
+      ["cuisine-east-asian", "Ostasiatisch", "East Asian", "cuisine-asian"],
+      [
+        "cuisine-southeast-asian",
+        "S\u00fcdostasiatisch",
+        "Southeast Asian",
+        "cuisine-asian",
+      ],
+      ["cuisine-indian", "Indisch", "Indian", "cuisine-asian"],
       ["cuisine-middle-eastern", "Nahöstlich", "Middle Eastern"],
       ["cuisine-european", "Europäisch", "European"],
       ["cuisine-modern", "Modern", "Modern"],
+      ["cuisine-african", "Afrikanisch", "African"],
+      ["cuisine-american", "Amerikanisch", "American"],
+      [
+        "cuisine-latin-american",
+        "Lateinamerikanisch",
+        "Latin American",
+        "cuisine-american",
+      ],
+      ["cuisine-mexican", "Mexikanisch", "Mexican", "cuisine-latin-american"],
     ],
   },
   {
@@ -493,6 +511,7 @@ const vegetarianIds = new Set([
   "butter",
   "egg",
   "dark-chocolate",
+  "honey",
   "white-chocolate",
 ]);
 
@@ -612,7 +631,7 @@ const dressings = ["tahini", "yogurt", "soy-sauce", "peanut-butter"];
 
 addFamily(
   "bowl",
-  90,
+  138,
   combinationsOf(grains, proteins, vegetables),
   ([base, protein, vegetable], index, id) => {
     const dressing = dressings[index % dressings.length];
@@ -633,7 +652,13 @@ addFamily(
       prep: 14 + (index % 4),
       cook: 18 + (index % 7),
       difficulty: difficultyFor(index),
-      cuisine: index % 2 ? "cuisine-mediterranean" : "cuisine-modern",
+      cuisine: [
+        "cuisine-mediterranean",
+        "cuisine-modern",
+        "cuisine-middle-eastern",
+        "cuisine-mexican",
+        "cuisine-latin-american",
+      ][index % 5],
       method: "method-bowl",
       steps: [
         text(
@@ -668,7 +693,7 @@ const pastaProteins = [
 ];
 addFamily(
   "pasta",
-  86,
+  120,
   combinationsOf(pastaTypes, pastaProteins, vegetables),
   ([pasta, protein, vegetable], index, id) =>
     createRecipe({
@@ -688,7 +713,7 @@ addFamily(
       prep: 12 + (index % 5),
       cook: 20 + (index % 8),
       difficulty: difficultyFor(index + 2),
-      cuisine: "cuisine-mediterranean",
+      cuisine: ["cuisine-mediterranean", "cuisine-european"][index % 2],
       method: "method-pan",
       steps: [
         text(
@@ -721,7 +746,7 @@ const curryProteins = [
 ];
 addFamily(
   "curry",
-  86,
+  120,
   combinationsOf(curryProteins, vegetables, ["basmati-rice", "brown-rice"]),
   ([protein, vegetable, rice], index, id) =>
     createRecipe({
@@ -741,7 +766,11 @@ addFamily(
       prep: 14 + (index % 4),
       cook: 24 + (index % 10),
       difficulty: difficultyFor(index + 4),
-      cuisine: "cuisine-asian",
+      cuisine: [
+        "cuisine-indian",
+        "cuisine-southeast-asian",
+        "cuisine-east-asian",
+      ][index % 3],
       method: "method-pot",
       steps: [
         text(
@@ -784,7 +813,7 @@ const soupVegetables = [
 ];
 addFamily(
   "soup",
-  86,
+  175,
   combinationsOf(soupBases, soupVegetables, vegetables).filter(
     ([base, vegetable, accent]) =>
       base !== accent && vegetable !== accent && base !== vegetable,
@@ -807,7 +836,9 @@ addFamily(
       prep: 16 + (index % 4),
       cook: 28 + (index % 12),
       difficulty: difficultyFor(index + 6),
-      cuisine: index % 2 ? "cuisine-european" : "cuisine-modern",
+      cuisine: ["cuisine-european", "cuisine-modern", "cuisine-african"][
+        index % 3
+      ],
       method: "method-pot",
       steps: [
         text(
@@ -841,7 +872,7 @@ const trayProteins = [
 ];
 addFamily(
   "tray",
-  86,
+  120,
   combinationsOf(trayBases, trayProteins, vegetables),
   ([base, protein, vegetable], index, id) =>
     createRecipe({
@@ -861,7 +892,7 @@ addFamily(
       prep: 15 + (index % 6),
       cook: 30 + (index % 15),
       difficulty: difficultyFor(index + 8),
-      cuisine: "cuisine-mediterranean",
+      cuisine: ["cuisine-mediterranean", "cuisine-american"][index % 2],
       method: "method-oven",
       steps: [
         text(
@@ -897,7 +928,7 @@ const saladAccents = [
 ];
 addFamily(
   "salad",
-  86,
+  175,
   combinationsOf(saladBases, saladProteins, saladAccents),
   ([base, protein, accent], index, id) =>
     createRecipe({
@@ -917,7 +948,11 @@ addFamily(
       prep: 17 + (index % 7),
       cook: 10 + (index % 12),
       difficulty: difficultyFor(index + 10),
-      cuisine: index % 2 ? "cuisine-middle-eastern" : "cuisine-modern",
+      cuisine: [
+        "cuisine-middle-eastern",
+        "cuisine-modern",
+        "cuisine-latin-american",
+      ][index % 3],
       method: "method-salad",
       steps: [
         text(
@@ -959,7 +994,7 @@ const casseroleProteins = [
 ];
 addFamily(
   "casserole",
-  180,
+  240,
   combinationsOf(casseroleBases, casseroleProteins, vegetables),
   ([base, protein, vegetable], index, id) =>
     createRecipe({
@@ -980,7 +1015,9 @@ addFamily(
       prep: 18 + (index % 7),
       cook: 34 + (index % 13),
       difficulty: difficultyFor(index + 12),
-      cuisine: index % 2 ? "cuisine-european" : "cuisine-modern",
+      cuisine: ["cuisine-european", "cuisine-modern", "cuisine-american"][
+        index % 3
+      ],
       method: "method-casserole",
       steps: [
         text(
@@ -1024,7 +1061,7 @@ const stewAccents = [
 ];
 addFamily(
   "stew",
-  180,
+  240,
   combinationsOf(stewProteins, vegetables, stewAccents).filter(
     ([, vegetable, accent]) => vegetable !== accent,
   ),
@@ -1047,7 +1084,12 @@ addFamily(
       prep: 17 + (index % 6),
       cook: 38 + (index % 18),
       difficulty: difficultyFor(index + 14),
-      cuisine: index % 3 ? "cuisine-european" : "cuisine-modern",
+      cuisine: [
+        "cuisine-european",
+        "cuisine-african",
+        "cuisine-indian",
+        "cuisine-latin-american",
+      ][index % 4],
       method: "method-stew",
       steps: [
         text(
@@ -1092,7 +1134,7 @@ const flavorLine = (ingredientId) =>
 
 addFamily(
   "cake",
-  160,
+  176,
   combinationsOf(bakingFruits, bakingFlavors, bakingToppings).filter(
     ([fruit, flavor]) => fruit !== flavor,
   ),
@@ -1116,7 +1158,7 @@ addFamily(
       prep: 22 + (index % 8),
       cook: 42 + (index % 14),
       difficulty: difficultyFor(index + 16),
-      cuisine: "cuisine-european",
+      cuisine: ["cuisine-european", "cuisine-american"][index % 2],
       method: "method-baking",
       meal: "meal-dessert",
       steps: [
@@ -1146,7 +1188,7 @@ addFamily(
 
 addFamily(
   "muffin",
-  160,
+  176,
   combinationsOf(bakingFruits, bakingFlavors, bakingToppings).filter(
     ([fruit, flavor]) => fruit !== flavor,
   ),
@@ -1170,9 +1212,9 @@ addFamily(
       prep: 18 + (index % 7),
       cook: 24 + (index % 8),
       difficulty: difficultyFor(index + 18),
-      cuisine: "cuisine-modern",
+      cuisine: ["cuisine-modern", "cuisine-american"][index % 2],
       method: "method-baking",
-      meal: index % 2 ? "meal-breakfast" : "meal-dessert",
+      meal: ["meal-breakfast", "meal-snack", "meal-breakfast", "meal-dessert"][index % 4],
       steps: [
         text(
           `Den Backofen auf 180 °C Ober-/Unterhitze vorheizen und ein Muffinblech mit Papierförmchen auslegen.`,

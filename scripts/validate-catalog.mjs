@@ -19,8 +19,8 @@ const findDuplicates = (values) => [
 if (!Number.isInteger(catalog.version) || catalog.version < 1) {
   errors.push("catalog.version must be a positive integer");
 }
-if (!Array.isArray(catalog.recipes) || catalog.recipes.length < 1290) {
-  errors.push("catalog must contain at least 1290 concrete recipe variants");
+if (!Array.isArray(catalog.recipes) || catalog.recipes.length < 1770) {
+  errors.push("catalog must contain at least 1770 concrete recipe variants");
 }
 
 const ingredientIds = catalog.ingredients.map((item) => item.id);
@@ -285,7 +285,7 @@ for (const recipe of catalog.recipes) {
     const instructionsDe = recipe.steps.map(({ de }) => de).join(" ");
     const instructionsEn = recipe.steps.map(({ en }) => en).join(" ");
     if (
-      !/vollständig (?:durch)?garen|durchgehend heiß|nicht mehr rosa|opak/i.test(
+      !/vollst?ndig (?:durch)?garen|durchgehend hei?|nicht mehr rosa|opak/i.test(
         instructionsDe,
       ) ||
       !/cook(?:ed)?(?: [a-z]+){0,3} through|hot and opaque|no longer (?:be )?pink/i.test(
