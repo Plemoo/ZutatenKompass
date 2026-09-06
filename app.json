@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "ZutatenKompass",
+    "name": "Zutaten Kompass",
     "slug": "zutatenkompass",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "scheme": "zutatenkompass",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.plemoo.zutatenkompass"
+      "bundleIdentifier": "com.zutatenkompass"
     },
     "android": {
-      "package": "com.plemoo.zutatenkompass",
+      "package": "com.zutatenkompass",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",

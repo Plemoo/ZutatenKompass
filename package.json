@@ -33,8 +33,9 @@
   },
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "versions":"git tag --sort=-v:refname",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
