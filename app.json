@@ -2,7 +2,7 @@
   "expo": {
     "name": "Zutaten Kompass",
     "slug": "zutatenkompass",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "scheme": "zutatenkompass",
     "icon": "./assets/icon.png",
@@ -15,9 +15,7 @@
       "package": "com.zutatenkompass",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "foregroundImage": "./assets/android-icon-foreground.png"
       },
       "predictiveBackGestureEnabled": true
     },
@@ -28,7 +26,16 @@
       "expo-router",
       "expo-localization",
       "expo-image",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
+        }
+      ]
     ],
     "extra": {
       "router": {},

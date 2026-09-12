@@ -40,3 +40,4 @@ yarn-error.*
 /ios
 /android
 publish-android-apps-437c17667e7b.json
+play-store/
