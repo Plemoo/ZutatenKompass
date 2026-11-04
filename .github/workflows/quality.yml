@@ -23,6 +23,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - run: pnpm exec prettier --write pnpm-lock.yaml
+      - run: git diff --exit-code -- pnpm-lock.yaml
       - run: pnpm exec prettier --check .
       - run: npx expo-doctor@latest
       - run: pnpm exec expo export --platform android --output-dir dist
